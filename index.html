@@ -5,32 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harry Potter Movies Analytics | Samuel Then</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- UPLOAD SCREEN -->
-<div id="uploadScreen">
-  <div class="upload-title">⚡ expecto-patronus-data</div>
-  <div class="upload-sub">Upload your Kaggle CSV files to explore interactively, or use demo data to preview the dashboard.<br><br><strong style="color:var(--gold);">kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset</strong></div>
-  <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
-    <div class="upload-icon">📂</div>
-    <div class="upload-label">Drop CSV files here or click to browse</div>
-    <div class="upload-hint">Dialogue.csv · Characters.csv · Movies.csv · Spells.csv · Places.csv</div>
-  </div>
-  <input type="file" id="fileInput" multiple accept=".csv">
-  <div class="file-list">
-    <div class="file-item" id="fi-dialogue"><span class="file-name">Dialogue.csv</span><span class="file-status">waiting</span></div>
-    <div class="file-item" id="fi-characters"><span class="file-name">Characters.csv</span><span class="file-status">waiting</span></div>
-    <div class="file-item" id="fi-movies"><span class="file-name">Movies.csv</span><span class="file-status">waiting</span></div>
-    <div class="file-item" id="fi-spells"><span class="file-name">Spells.csv</span><span class="file-status">waiting</span></div>
-    <div class="file-item" id="fi-places"><span class="file-name">Places.csv</span><span class="file-status">waiting</span></div>
-  </div>
-  <button class="btn-analyze" id="btnAnalyze" onclick="buildDashboard()">ANALYZE DATA</button>
-  <span class="skip-link" onclick="loadDemo()">Use demo data instead →</span>
-</div>
-
-<!-- DASHBOARD -->
 <div id="dashboard">
   <div class="header">
     <div>
@@ -127,7 +105,6 @@
   </div>
 </div>
 
-  <script src="main.js"></script>
-</script>
+<script src="main.js"></script>
 </body>
 </html>
