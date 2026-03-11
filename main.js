@@ -1,58 +1,11 @@
 // ── DATABASE ──────────────────────────────────────────────────
 const DB = { dialogues:[], characters:[], movies:[], spells:[], places:[] };
-let charHouseMap = {};   // "harry potter" -> "Gryffindor"
-let movieMap = {};       // "1" -> "Philosopher's Stone"
+let charHouseMap = {};
+let movieMap = {};
 let currentFilter = 'all';
-const filesLoaded = { dialogue:false, characters:false, movies:false, spells:false, places:false };
 
-// ── CSV PARSER ────────────────────────────────────────────────
-function parseCSV(text) {
-  const lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  const first = lines[0];
-  const delim = (first.split(';').length >= first.split(',').length) ? ';' : ',';
-  const headers = first.split(delim).map(h => h.trim().replace(/^"|"$/g,'').toLowerCase().replace(/\s+/g,'_'));
-  return lines.slice(1).filter(l => l.trim()).map(line => {
-    const cols = line.split(delim).map(v => v.trim().replace(/^"|"$/g,''));
-    const obj = {};
-    headers.forEach((h,i) => { obj[h] = cols[i] !== undefined ? cols[i] : ''; });
-    return obj;
-  });
-}
-
-// ── FILE UPLOAD ───────────────────────────────────────────────
-document.getElementById('fileInput').addEventListener('change', e => Array.from(e.target.files).forEach(loadFile));
-const uploadBox = document.getElementById('uploadBox');
-uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.classList.add('dragover'); });
-uploadBox.addEventListener('dragleave', () => uploadBox.classList.remove('dragover'));
-uploadBox.addEventListener('drop', e => { e.preventDefault(); uploadBox.classList.remove('dragover'); Array.from(e.dataTransfer.files).forEach(loadFile); });
-
-function loadFile(file) {
-  const name = file.name.toLowerCase();
-  let key = null;
-  if (name.includes('dialogue') || name.includes('dialog')) key = 'dialogue';
-  else if (name.includes('character')) key = 'characters';
-  else if (name.includes('movie')) key = 'movies';
-  else if (name.includes('spell')) key = 'spells';
-  else if (name.includes('place') || name.includes('location')) key = 'places';
-  if (!key) return;
-
-  const reader = new FileReader();
-  reader.onload = e => {
-    const parsed = parseCSV(e.target.result);
-    if (key === 'dialogue') DB.dialogues = parsed;
-    else if (key === 'characters') DB.characters = parsed;
-    else if (key === 'movies') DB.movies = parsed;
-    else if (key === 'spells') DB.spells = parsed;
-    else if (key === 'places') DB.places = parsed;
-
-    filesLoaded[key] = true;
-    const el = document.getElementById('fi-' + key);
-    if (el) { el.classList.add('loaded'); el.querySelector('.file-status').textContent = '✓ ' + parsed.length + ' rows'; }
-    if (Object.values(filesLoaded).filter(Boolean).length >= 2) document.getElementById('btnAnalyze').classList.add('ready');
-  };
-  reader.readAsText(file);
-}
+// ── AUTO LOAD ON PAGE READY ───────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => loadDemo());
 
 // ── DEMO DATA ─────────────────────────────────────────────────
 function loadDemo() {
@@ -68,50 +21,49 @@ function loadDemo() {
   ];
 
   DB.characters = [
-    {character_name:"Harry Potter",      house:"Gryffindor"},
-    {character_name:"Hermione Granger",  house:"Gryffindor"},
-    {character_name:"Ron Weasley",       house:"Gryffindor"},
-    {character_name:"Albus Dumbledore",  house:"Gryffindor"},
-    {character_name:"Rubeus Hagrid",     house:"Gryffindor"},
-    {character_name:"Neville Longbottom",house:"Gryffindor"},
-    {character_name:"Ginny Weasley",     house:"Gryffindor"},
-    {character_name:"Sirius Black",      house:"Gryffindor"},
-    {character_name:"Minerva McGonagall",house:"Gryffindor"},
-    {character_name:"Severus Snape",     house:"Slytherin"},
-    {character_name:"Draco Malfoy",      house:"Slytherin"},
-    {character_name:"Lord Voldemort",    house:"Slytherin"},
-    {character_name:"Lucius Malfoy",     house:"Slytherin"},
-    {character_name:"Dolores Umbridge",  house:"Slytherin"},
+    {character_name:"Harry Potter",       house:"Gryffindor"},
+    {character_name:"Hermione Granger",   house:"Gryffindor"},
+    {character_name:"Ron Weasley",        house:"Gryffindor"},
+    {character_name:"Albus Dumbledore",   house:"Gryffindor"},
+    {character_name:"Rubeus Hagrid",      house:"Gryffindor"},
+    {character_name:"Neville Longbottom", house:"Gryffindor"},
+    {character_name:"Ginny Weasley",      house:"Gryffindor"},
+    {character_name:"Sirius Black",       house:"Gryffindor"},
+    {character_name:"Minerva McGonagall", house:"Gryffindor"},
+    {character_name:"Severus Snape",      house:"Slytherin"},
+    {character_name:"Draco Malfoy",       house:"Slytherin"},
+    {character_name:"Lord Voldemort",     house:"Slytherin"},
+    {character_name:"Lucius Malfoy",      house:"Slytherin"},
+    {character_name:"Dolores Umbridge",   house:"Slytherin"},
     {character_name:"Bellatrix Lestrange",house:"Slytherin"},
-    {character_name:"Luna Lovegood",     house:"Ravenclaw"},
-    {character_name:"Cho Chang",         house:"Ravenclaw"},
-    {character_name:"Filius Flitwick",   house:"Ravenclaw"},
-    {character_name:"Cedric Diggory",    house:"Hufflepuff"},
-    {character_name:"Nymphadora Tonks",  house:"Hufflepuff"},
+    {character_name:"Luna Lovegood",      house:"Ravenclaw"},
+    {character_name:"Cho Chang",          house:"Ravenclaw"},
+    {character_name:"Filius Flitwick",    house:"Ravenclaw"},
+    {character_name:"Cedric Diggory",     house:"Hufflepuff"},
+    {character_name:"Nymphadora Tonks",   house:"Hufflepuff"},
   ];
 
-  // Generate dialogue rows per character per movie
   const script = {
-    "Harry Potter":       [130,120,115,140,165,125,110,102],
-    "Hermione Granger":   [92,88,80,95,110,90,80,76],
-    "Ron Weasley":        [85,80,75,88,100,78,70,65],
-    "Albus Dumbledore":   [60,58,55,70,75,80,45,40],
-    "Rubeus Hagrid":      [40,38,35,30,25,20,15,12],
-    "Neville Longbottom": [18,16,20,22,35,28,22,30],
-    "Ginny Weasley":      [10,12,8,15,20,25,18,22],
-    "Sirius Black":       [0,0,55,30,58,0,0,0],
-    "Minerva McGonagall": [30,28,25,22,35,30,18,20],
-    "Severus Snape":      [45,42,50,38,55,70,35,30],
-    "Draco Malfoy":       [38,40,35,42,45,48,30,28],
-    "Lord Voldemort":     [15,20,0,25,0,10,30,45],
-    "Lucius Malfoy":      [10,15,0,20,8,12,5,0],
-    "Dolores Umbridge":   [0,0,0,0,55,0,0,0],
-    "Bellatrix Lestrange":[0,0,0,0,15,10,25,30],
-    "Luna Lovegood":      [0,0,0,0,38,30,25,20],
-    "Cho Chang":          [0,0,0,10,20,5,0,0],
-    "Filius Flitwick":    [8,6,5,4,8,6,3,4],
-    "Cedric Diggory":     [0,0,0,35,0,0,0,0],
-    "Nymphadora Tonks":   [0,0,0,0,20,15,18,8],
+    "Harry Potter":        [130,120,115,140,165,125,110,102],
+    "Hermione Granger":    [92,88,80,95,110,90,80,76],
+    "Ron Weasley":         [85,80,75,88,100,78,70,65],
+    "Albus Dumbledore":    [60,58,55,70,75,80,45,40],
+    "Rubeus Hagrid":       [40,38,35,30,25,20,15,12],
+    "Neville Longbottom":  [18,16,20,22,35,28,22,30],
+    "Ginny Weasley":       [10,12,8,15,20,25,18,22],
+    "Sirius Black":        [0,0,55,30,58,0,0,0],
+    "Minerva McGonagall":  [30,28,25,22,35,30,18,20],
+    "Severus Snape":       [45,42,50,38,55,70,35,30],
+    "Draco Malfoy":        [38,40,35,42,45,48,30,28],
+    "Lord Voldemort":      [15,20,0,25,0,10,30,45],
+    "Lucius Malfoy":       [10,15,0,20,8,12,5,0],
+    "Dolores Umbridge":    [0,0,0,0,55,0,0,0],
+    "Bellatrix Lestrange": [0,0,0,0,15,10,25,30],
+    "Luna Lovegood":       [0,0,0,0,38,30,25,20],
+    "Cho Chang":           [0,0,0,10,20,5,0,0],
+    "Filius Flitwick":     [8,6,5,4,8,6,3,4],
+    "Cedric Diggory":      [0,0,0,35,0,0,0,0],
+    "Nymphadora Tonks":    [0,0,0,0,20,15,18,8],
   };
 
   DB.dialogues = [];
@@ -146,7 +98,6 @@ function loadDemo() {
     {place_name:"Hogwarts"},{place_name:"Ministry of Magic"},{place_name:"Diagon Alley"},
     {place_name:"Azkaban"},{place_name:"Hogsmeade"},{place_name:"Forbidden Forest"},
     {place_name:"Grimmauld Place"},{place_name:"Malfoy Manor"},{place_name:"Godric's Hollow"},
-    {place_name:"Dumbledore"},{place_name:"Voldemort"},
   ];
 
   buildDashboard();
@@ -154,30 +105,23 @@ function loadDemo() {
 
 // ── BUILD ─────────────────────────────────────────────────────
 function buildDashboard() {
-  // Build charHouseMap — normalize keys to lowercase trimmed
   charHouseMap = {};
   DB.characters.forEach(c => {
-    // handle both column name variants from Kaggle
-    const name = (c.character_name || c.name || c['character name'] || '').toLowerCase().trim();
-    const house = (c.house || c['house'] || 'Unknown').trim();
+    const name = (c.character_name || c.name || '').toLowerCase().trim();
+    const house = (c.house || 'Unknown').trim();
     if (name) charHouseMap[name] = house;
   });
 
-  // Build movieMap
   movieMap = {};
   DB.movies.forEach(m => {
     const id = String(m.movie_id || m.id || '').trim();
-    const title = (m.movie_title || m.title || m['movie title'] || ('Movie ' + id)).trim();
+    const title = (m.movie_title || m.title || ('Movie ' + id)).trim();
     if (id) movieMap[id] = title;
   });
 
   document.getElementById('kpi-spells').textContent = DB.spells.length || '—';
   document.getElementById('kpi-places').textContent = DB.places.length || '—';
 
-  document.getElementById('uploadScreen').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-
-  // Render with default filter
   applyFilter('all');
 }
 
@@ -185,22 +129,18 @@ function buildDashboard() {
 function applyFilter(house) {
   currentFilter = house;
 
-  // Update pill active states
   document.querySelectorAll('.pill').forEach(p => {
     p.classList.remove('active');
     if (p.dataset.house === house) p.classList.add('active');
   });
 
-  // Filter dialogues
   const filtered = house === 'all'
     ? DB.dialogues
     : DB.dialogues.filter(d => {
         const key = (d.character_name || '').toLowerCase().trim();
-        const h = charHouseMap[key] || 'Unknown';
-        return h === house;
+        return (charHouseMap[key] || 'Unknown') === house;
       });
 
-  // Render every chart with filtered data
   renderKPIs(filtered);
   renderCharBars(filtered, house);
   renderDonut(filtered);
@@ -213,15 +153,8 @@ function applyFilter(house) {
 
 // ── HELPERS ───────────────────────────────────────────────────
 function fmt(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n); }
-
-function getHouse(characterName) {
-  return charHouseMap[(characterName||'').toLowerCase().trim()] || 'Unknown';
-}
-
-function getMovieTitle(movieId) {
-  return movieMap[String(movieId).trim()] || ('Movie ' + movieId);
-}
-
+function getHouse(name) { return charHouseMap[(name||'').toLowerCase().trim()] || 'Unknown'; }
+function getMovieTitle(id) { return movieMap[String(id).trim()] || ('Movie ' + id); }
 function animateBars(container) {
   setTimeout(() => {
     container.querySelectorAll('[data-w]').forEach(el => { el.style.width = el.dataset.w + '%'; });
@@ -236,13 +169,13 @@ const houseBarColor = {
   'Unknown':    'linear-gradient(90deg,rgba(201,168,76,0.4),rgba(232,201,122,0.2))',
 };
 
-// ── RENDER KPIs ───────────────────────────────────────────────
+// ── KPIs ──────────────────────────────────────────────────────
 function renderKPIs(filtered) {
   document.getElementById('kpi-lines').textContent = fmt(filtered.length);
   document.getElementById('kpi-chars').textContent = new Set(filtered.map(d => d.character_name)).size;
 }
 
-// ── RENDER CHARACTER BARS ─────────────────────────────────────
+// ── CHARACTER BARS ────────────────────────────────────────────
 function renderCharBars(filtered, house) {
   const counts = {};
   filtered.forEach(d => { if (d.character_name) counts[d.character_name] = (counts[d.character_name]||0)+1; });
@@ -256,8 +189,7 @@ function renderCharBars(filtered, house) {
   if (!sorted.length) { container.innerHTML = '<div class="no-data">No data for this selection</div>'; return; }
 
   sorted.forEach(([name, count]) => {
-    const h = getHouse(name);
-    const bg = houseBarColor[h] || houseBarColor['Unknown'];
+    const bg = houseBarColor[getHouse(name)] || houseBarColor['Unknown'];
     const pct = Math.round((count/max)*100);
     const div = document.createElement('div');
     div.className = 'hbar-item';
@@ -275,7 +207,7 @@ function renderCharBars(filtered, house) {
     `${top[0]} leads with ${top[1]} lines — ${pct}% of all ${house==='all'?'':'filtered '}dialogue.`;
 }
 
-// ── RENDER DONUT ──────────────────────────────────────────────
+// ── DONUT ─────────────────────────────────────────────────────
 function renderDonut(filtered) {
   const houseCounts = {};
   filtered.forEach(d => {
@@ -295,10 +227,10 @@ function renderDonut(filtered) {
 
   sorted.forEach(([h, count]) => {
     const arc = (count/total) * C;
-    const color = houseColors[h] || '#888';
     const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     circle.setAttribute('cx','75'); circle.setAttribute('cy','75'); circle.setAttribute('r','55');
-    circle.setAttribute('fill','none'); circle.setAttribute('stroke',color);
+    circle.setAttribute('fill','none');
+    circle.setAttribute('stroke', houseColors[h]||'#888');
     circle.setAttribute('stroke-width','22');
     circle.setAttribute('stroke-dasharray',`${arc} ${C-arc}`);
     circle.setAttribute('stroke-dashoffset',String(-offset));
@@ -318,7 +250,7 @@ function renderDonut(filtered) {
   });
 }
 
-// ── RENDER MOVIE BARS ─────────────────────────────────────────
+// ── MOVIE BARS ────────────────────────────────────────────────
 function renderMovieBars(filtered, house) {
   const movieCounts = {};
   filtered.forEach(d => {
@@ -326,16 +258,13 @@ function renderMovieBars(filtered, house) {
     movieCounts[t] = (movieCounts[t]||0)+1;
   });
 
-  const orderedMovies = DB.movies.length
-    ? DB.movies.map(m => getMovieTitle(m.movie_id || m.id))
-    : Object.keys(movieCounts);
-
+  const orderedMovies = DB.movies.map(m => getMovieTitle(m.movie_id || m.id));
   const max = Math.max(...Object.values(movieCounts), 1);
   document.getElementById('movieTag').textContent = house==='all' ? 'All Houses' : house;
-  const container = document.getElementById('movieBars');
-  container.innerHTML = '';
 
   const colors = ['#4a0080','#003580','#004d00','#7a2000','#003050','#401500','#2a0040','#600000'];
+  const container = document.getElementById('movieBars');
+  container.innerHTML = '';
 
   orderedMovies.forEach((title, i) => {
     const count = movieCounts[title] || 0;
@@ -362,50 +291,45 @@ function renderMovieBars(filtered, house) {
   }
 }
 
-// ── RENDER SPELL TABLE ────────────────────────────────────────
+// ── SPELL TABLE ───────────────────────────────────────────────
 function renderSpellTable() {
   const tbody = document.getElementById('spellTable');
   tbody.innerHTML = '';
-  if (!DB.spells.length) { tbody.innerHTML = '<tr><td colspan="4" class="no-data">Load Spells.csv to see data</td></tr>'; return; }
+  if (!DB.spells.length) { tbody.innerHTML = '<tr><td colspan="4" class="no-data">No spell data</td></tr>'; return; }
 
   const typeClass = { Charm:'type-charm', Curse:'type-curse', Jinx:'type-jinx', Hex:'type-hex', Transfiguration:'type-trans' };
-  // Count refs in ALL dialogues (spells don't filter by house)
   const allText = DB.dialogues.map(d=>(d.dialogue||'').toLowerCase()).join(' ');
 
   DB.spells.map(s => ({
-    ...s,
-    refs: s.incantation ? (allText.split(s.incantation.toLowerCase()).length-1) : 0
+    ...s, refs: s.incantation ? (allText.split(s.incantation.toLowerCase()).length-1) : 0
   })).sort((a,b)=>b.refs-a.refs).slice(0,10).forEach(s => {
-    const tc = typeClass[s.spell_type] || 'type-other';
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${s.spell_name||'—'}</td><td style="font-style:italic;opacity:0.7">${s.incantation||'—'}</td><td><span class="spell-type ${tc}">${s.spell_type||'Other'}</span></td><td>${s.refs||0}</td>`;
+    tr.innerHTML = `<td>${s.spell_name||'—'}</td><td style="font-style:italic;opacity:0.7">${s.incantation||'—'}</td><td><span class="spell-type ${typeClass[s.spell_type]||'type-other'}">${s.spell_type||'Other'}</span></td><td>${s.refs||0}</td>`;
     tbody.appendChild(tr);
   });
 }
 
-// ── RENDER LINE CHART ─────────────────────────────────────────
+// ── LINE CHART ────────────────────────────────────────────────
 function renderLineChart() {
-  const movies = DB.movies.length ? DB.movies : Array.from({length:8},(_,i)=>({movie_id:String(i+1)}));
+  const movies = DB.movies;
   const targets = ['harry potter','hermione granger','ron weasley'];
   const colors  = ['#FFC500','#48cae4','#eb5757'];
   const labels  = ["P.S.","C.S.","P.A.","G.F.","O.P.","H.P.","DH1","DH2"];
 
-  // Count lines per target per movie — uses ALL dialogues (line chart always shows full series)
   const data = targets.map(name =>
     movies.map(m => DB.dialogues.filter(d =>
-      (d.character_name||'').toLowerCase().trim() === name && String(d.movie_id).trim() === String(m.movie_id||m.id).trim()
+      (d.character_name||'').toLowerCase().trim() === name &&
+      String(d.movie_id).trim() === String(m.movie_id||m.id).trim()
     ).length)
   );
 
-  const allVals = data.flat();
-  const maxVal = Math.max(...allVals, 1);
-  const W = 290, H = 120, padT = 8, padB = 18;
+  const maxVal = Math.max(...data.flat(), 1);
+  const W=290, H=120, padT=8, padB=18;
   const svg = document.getElementById('lineSvg');
   svg.innerHTML = '';
 
-  // Grid
   [0.33,0.66,1].forEach(f => {
-    const y = padT + (1-f)*(H-padT-padB);
+    const y = padT+(1-f)*(H-padT-padB);
     const line = document.createElementNS('http://www.w3.org/2000/svg','line');
     line.setAttribute('x1','0'); line.setAttribute('x2',String(W));
     line.setAttribute('y1',String(y)); line.setAttribute('y2',String(y));
@@ -413,7 +337,6 @@ function renderLineChart() {
     svg.appendChild(line);
   });
 
-  // Lines
   data.forEach((series, si) => {
     const step = movies.length > 1 ? W/(movies.length-1) : W;
     const pts = series.map((v,i) => `${i*step},${padT+(1-v/maxVal)*(H-padT-padB)}`).join(' ');
@@ -427,7 +350,6 @@ function renderLineChart() {
     svg.appendChild(poly);
   });
 
-  // X labels
   movies.forEach((m,i) => {
     const x = movies.length>1 ? i*(W/(movies.length-1)) : 0;
     const t = document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -439,21 +361,22 @@ function renderLineChart() {
   });
 }
 
-// ── RENDER LOCATIONS ──────────────────────────────────────────
+// ── LOCATIONS ─────────────────────────────────────────────────
 function renderLocations(filtered, house) {
   document.getElementById('locTag').textContent = house==='all' ? 'All Houses' : house;
-  if (!DB.places.length) { document.getElementById('locBars').innerHTML='<div class="no-data">Load Places.csv to see data</div>'; return; }
+  const container = document.getElementById('locBars');
+
+  if (!DB.places.length) { container.innerHTML='<div class="no-data">No location data</div>'; return; }
 
   const allText = filtered.map(d=>(d.dialogue||'').toLowerCase()).join(' ');
   const counts = DB.places.map(p => {
-    const name = (p.place_name || p.location || p.name || '').trim();
+    const name = (p.place_name||'').trim();
     const refs = name ? (allText.split(name.toLowerCase()).length-1) : 0;
     return { name, refs };
-  }).filter(p=>p.name && p.refs>0).sort((a,b)=>b.refs-a.refs).slice(0,7);
+  }).filter(p=>p.refs>0).sort((a,b)=>b.refs-a.refs).slice(0,7);
 
   const max = counts[0]?.refs || 1;
-  const container = document.getElementById('locBars');
-  container.innerHTML = counts.length ? '' : '<div class="no-data">No location references found in filtered dialogue</div>';
+  container.innerHTML = counts.length ? '' : '<div class="no-data">No location references in filtered dialogue</div>';
 
   const locColors = [
     'linear-gradient(90deg,rgba(34,47,91,0.8),rgba(74,111,165,0.45))',
@@ -478,7 +401,7 @@ function renderLocations(filtered, house) {
   animateBars(container);
 }
 
-// ── RENDER SPELL TYPES ────────────────────────────────────────
+// ── SPELL TYPES ───────────────────────────────────────────────
 function renderSpellTypes() {
   const typeCounts = {};
   DB.spells.forEach(s => { const t=s.spell_type||'Other'; typeCounts[t]=(typeCounts[t]||0)+1; });
@@ -510,7 +433,6 @@ function renderSpellTypes() {
   animateBars(container);
 
   const charms = typeCounts['Charm']||0;
-  document.getElementById('spellInsight').textContent = DB.spells.length
-    ? `Charms make up ${Math.round(charms/total*100)}% of all spells. The three Unforgivable Curses appear across most films despite being a small fraction of total spell count.`
-    : 'Load Spells.csv to see spell type analysis.';
+  document.getElementById('spellInsight').textContent =
+    `Charms make up ${Math.round(charms/total*100)}% of all spells. The three Unforgivable Curses appear across most films despite being a small fraction of total spell count.`;
 }
