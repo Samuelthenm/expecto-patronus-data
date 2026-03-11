@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter Movies Analytics | Samuel Then</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c14;
+    --surface: #0f1520;
+    --surface2: #141c2e;
+    --border: rgba(180, 150, 80, 0.15);
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --text: #e8dcc8;
+    --text-muted: rgba(232, 220, 200, 0.5);
+    --gryff: #ae0001;
+    --slyth: #2a623d;
+    --raven: #222f5b;
+    --huffe: #f0c75e;
+    --accent1: #7b68ee;
+    --accent2: #48cae4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgba(174,0,1,0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 100%, rgba(34,47,91,0.12) 0%, transparent 45%);
+    font-family: 'EB Garamond', serif;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(180deg, rgba(12,16,28,0.98) 0%, rgba(8,12,20,0.95) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px 22px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(201,168,76,0.02) 80px,
+      rgba(201,168,76,0.02) 81px
+    );
+  }
+
+  .header-left { position: relative; z-index: 1; }
+
+  .header-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+  }
+
+  .header-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+    letter-spacing: 0.05em;
+  }
+
+  .header-right {
+    position: relative;
+    z-index: 1;
+    text-align: right;
+  }
+
+  .data-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .author-tag {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
+  .pill {
+    padding: 5px 14px;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.25s;
+  }
+
+  .pill:hover { border-color: var(--gold); color: var(--gold); }
+  .pill.active { background: rgba(201,168,76,0.12); border-color: var(--gold); color: var(--gold); }
+  .pill.g.active { background: rgba(174,0,1,0.2); border-color: var(--gryff); color: #ff6b6b; }
+  .pill.s.active { background: rgba(42,98,61,0.2); border-color: var(--slyth); color: #6fcf97; }
+  .pill.r.active { background: rgba(34,47,91,0.3); border-color: #4a6fa5; color: #90acda; }
+  .pill.h.active { background: rgba(240,199,94,0.1); border-color: var(--huffe); color: var(--huffe); }
+
+  /* ── MAIN LAYOUT ── */
+  .canvas {
+    padding: 28px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-tag {
+    font-size: 0.58rem;
+    padding: 2px 8px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+  }
+
+  /* ── KPI ROW ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+
+  .kpi {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    animation: fadeUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .kpi:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.3); }
+
+  .kpi::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .kpi:nth-child(1)::before { background: var(--gryff); }
+  .kpi:nth-child(2)::before { background: var(--slyth); }
+  .kpi:nth-child(3)::before { background: #4a6fa5; }
+  .kpi:nth-child(4)::before { background: var(--huffe); }
+  .kpi:nth-child(5)::before { background: var(--gold); }
+
+  .kpi:nth-child(1) { animation-delay: 0.05s; }
+  .kpi:nth-child(2) { animation-delay: 0.1s; }
+  .kpi:nth-child(3) { animation-delay: 0.15s; }
+  .kpi:nth-child(4) { animation-delay: 0.2s; }
+  .kpi:nth-child(5) { animation-delay: 0.25s; }
+
+  .kpi-icon { font-size: 1.1rem; margin-bottom: 8px; opacity: 0.8; }
+
+  .kpi-val {
+    font-family: 'Cinzel', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .kpi-lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+
+  /* ── ROW GRIDS ── */
+  .row-2 { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .row-2b { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; }
+
+  /* ── HORIZONTAL BAR ── */
+  .hbar-list { display: flex; flex-direction: column; gap: 9px; }
+
+  .hbar-item { display: flex; align-items: center; gap: 10px; }
+
+  .hbar-name {
+    font-size: 0.78rem;
+    width: 130px;
+    flex-shrink: 0;
+    opacity: 0.85;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hbar-track {
+    flex: 1;
+    height: 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .hbar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1.1s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .hbar-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    width: 36px;
+    text-align: right;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* bar colors */
+  .c1 { background: linear-gradient(90deg, rgba(174,0,1,0.7), rgba(174,0,1,0.4)); }
+  .c2 { background: linear-gradient(90deg, rgba(42,98,61,0.7), rgba(42,98,61,0.4)); }
+  .c3 { background: linear-gradient(90deg, rgba(34,47,91,0.8), rgba(74,111,165,0.5)); }
+  .c4 { background: linear-gradient(90deg, rgba(201,168,76,0.5), rgba(240,199,94,0.3)); }
+  .c5 { background: linear-gradient(90deg, rgba(72,202,228,0.5), rgba(72,202,228,0.2)); }
+  .cg { background: linear-gradient(90deg, rgba(201,168,76,0.6), rgba(232,201,122,0.3)); }
+
+  /* ── MOVIE BARS ── */
+  .movie-grid { display: flex; flex-direction: column; gap: 11px; }
+
+  .movie-row { display: flex; align-items: center; gap: 10px; }
+
+  .movie-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    width: 20px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .movie-name {
+    font-size: 0.75rem;
+    width: 160px;
+    flex-shrink: 0;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .movie-track {
+    flex: 1;
+    height: 22px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .movie-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .movie-fill.m1 { background: linear-gradient(90deg, #4a0080, #7b2cbf); }
+  .movie-fill.m2 { background: linear-gradient(90deg, #003580, #0057b8); }
+  .movie-fill.m3 { background: linear-gradient(90deg, #004d00, #007a00); }
+  .movie-fill.m4 { background: linear-gradient(90deg, #7a2000, #bf3a00); }
+  .movie-fill.m5 { background: linear-gradient(90deg, #003050, #005080); }
+  .movie-fill.m6 { background: linear-gradient(90deg, #401500, #7a2a00); }
+  .movie-fill.m7 { background: linear-gradient(90deg, #2a0040, #4a0070); }
+  .movie-fill.m8 { background: linear-gradient(90deg, #600000, #ae0001); }
+
+  /* ── DONUT ── */
+  .donut-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .donut-svg-wrap { position: relative; width: 160px; height: 160px; }
+  .donut-svg-wrap svg { transform: rotate(-90deg); }
+
+  .donut-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .donut-center-val {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .donut-center-lbl {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  .donut-legend { width: 100%; display: flex; flex-direction: column; gap: 7px; }
+
+  .dl-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+  }
+
+  .dl-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .dl-name { flex: 1; opacity: 0.8; font-family: 'Cinzel', serif; font-size: 0.62rem; }
+  .dl-val { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.65rem; }
+
+  /* ── SPELL TABLE ── */
+  .spell-table { width: 100%; border-collapse: collapse; }
+
+  .spell-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    opacity: 0.7;
+    text-align: left;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .spell-table td {
+    padding: 7px 0;
+    font-size: 0.78rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    opacity: 0.85;
+  }
+
+  .spell-table td:last-child { text-align: right; }
+
+  .spell-type {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .type-charm { background: rgba(72,202,228,0.12); color: #48cae4; border: 1px solid rgba(72,202,228,0.2); }
+  .type-curse { background: rgba(174,0,1,0.15); color: #ff6b6b; border: 1px solid rgba(174,0,1,0.2); }
+  .type-jinx  { background: rgba(123,104,238,0.15); color: #b8aaff; border: 1px solid rgba(123,104,238,0.2); }
+  .type-hex   { background: rgba(255,140,0,0.12); color: #ffab40; border: 1px solid rgba(255,140,0,0.2); }
+  .type-trans { background: rgba(42,98,61,0.2); color: #6fcf97; border: 1px solid rgba(42,98,61,0.3); }
+  .type-other { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* ── LINE CHART ── */
+  .line-wrap { position: relative; height: 160px; }
+  .line-wrap svg { width: 100%; height: 100%; overflow: visible; }
+
+  .animated-path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: dash 2s ease forwards;
+  }
+
+  .ap2 { animation-delay: 0.3s; }
+  .ap3 { animation-delay: 0.6s; }
+  .ap4 { animation-delay: 0.9s; }
+
+  @keyframes dash {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight {
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 3px 3px 0;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+
+  .insight-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  .insight-text { font-size: 0.78rem; opacity: 0.75; line-height: 1.55; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin: 10px 40px 30px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.12em;
+  }
+
+  .footer-tools { display: flex; gap: 10px; }
+  .tool-chip {
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(1) { animation-delay: 0.3s; }
+  .card:nth-child(2) { animation-delay: 0.4s; }
+  .card:nth-child(3) { animation-delay: 0.5s; }
+  .card:nth-child(4) { animation-delay: 0.6s; }
+
+  @media (max-width: 1100px) {
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .row-2, .row-2b { grid-template-columns: 1fr; }
+    .row-3 { grid-template-columns: 1fr 1fr; }
+    .canvas { padding: 20px; }
+    .header, .filter-bar, .footer { padding-left: 20px; padding-right: 20px; }
+  }
+
+  @media (max-width: 700px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .row-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">⚡ Portfolio Project · Kaggle Dataset Analysis</div>
+    <h1>Harry Potter Movies<br>Analytics Dashboard</h1>
+    <div class="header-sub">Dialogue · Characters · Spells · Locations · All 8 Films</div>
+  </div>
+  <div class="header-right">
+    <div class="data-badge">📊 Source: Kaggle — maricinnamon/harry-potter-movies-dataset</div><br>
+    <div class="author-tag">Samuel Then · Data Analyst · SQL · Tableau · Power BI</div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter by House:</span>
+  <button class="pill active" onclick="filterHouse('all',this)">All Houses</button>
+  <button class="pill g" onclick="filterHouse('g',this)">🦁 Gryffindor</button>
+  <button class="pill s" onclick="filterHouse('s',this)">🐍 Slytherin</button>
+  <button class="pill r" onclick="filterHouse('r',this)">🦅 Ravenclaw</button>
+  <button class="pill h" onclick="filterHouse('h',this)">🦡 Hufflepuff</button>
+</div>
+
+<!-- CANVAS -->
+<div class="canvas">
+
+  <!-- KPI ROW -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-icon">🎬</div>
+      <div class="kpi-val">8</div>
+      <div class="kpi-lbl">Films Analyzed</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">💬</div>
+      <div class="kpi-val">4,624</div>
+      <div class="kpi-lbl">Total Dialogue Lines</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">🧙</div>
+      <div class="kpi-val">172</div>
+      <div class="kpi-lbl">Unique Characters</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">⚡</div>
+      <div class="kpi-val">67</div>
+      <div class="kpi-lbl">Unique Spells</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon">🗺️</div>
+      <div class="kpi-val">41</div>
+      <div class="kpi-lbl">Locations Referenced</div>
+    </div>
+  </div>
+
+  <!-- ROW 1: Characters + House Donut -->
+  <div class="row-2">
+
+    <div class="card">
+      <div class="card-title">
+        Top 10 Characters by Dialogue Lines
+        <span class="card-tag">All Movies</span>
+      </div>
+      <div class="hbar-list" id="charBars">
+        <div class="hbar-item">
+          <div class="hbar-name">Harry Potter</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="100">1,022</div></div>
+          <div class="hbar-num">1,022</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Hermione Granger</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="72">736</div></div>
+          <div class="hbar-num">736</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Ron Weasley</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="65">664</div></div>
+          <div class="hbar-num">664</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Dumbledore</div>
+          <div class="hbar-track"><div class="hbar-fill cg" data-w="52">531</div></div>
+          <div class="hbar-num">531</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Severus Snape</div>
+          <div class="hbar-track"><div class="hbar-fill c2" data-w="38">388</div></div>
+          <div class="hbar-num">388</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Draco Malfoy</div>
+          <div class="hbar-track"><div class="hbar-fill c2" data-w="30">307</div></div>
+          <div class="hbar-num">307</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Sirius Black</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="22">225</div></div>
+          <div class="hbar-num">225</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Voldemort</div>
+          <div class="hbar-track"><div class="hbar-fill c4" data-w="18">184</div></div>
+          <div class="hbar-num">184</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Neville Longbottom</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="15">153</div></div>
+          <div class="hbar-num">153</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Luna Lovegood</div>
+          <div class="hbar-track"><div class="hbar-fill c3" data-w="12">122</div></div>
+          <div class="hbar-num">122</div>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">🔍 Key Insight</div>
+        <div class="insight-text">Harry Potter accounts for 22.1% of all dialogue lines across 8 films — nearly 3× more than any Slytherin character. Gryffindor characters collectively dominate 61% of total screen dialogue.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dialogue Share by House</div>
+      <div class="donut-wrap">
+        <div class="donut-svg-wrap">
+          <svg viewBox="0 0 160 160" width="160" height="160">
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#ae0001" stroke-width="24"
+              stroke-dasharray="226.19 150.80" stroke-dashoffset="0" opacity="0.85"/>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#2a623d" stroke-width="24"
+              stroke-dasharray="84.82 292.17" stroke-dashoffset="-226.19" opacity="0.85"/>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#222f5b" stroke-width="24"
+              stroke-dasharray="62.83 314.16" stroke-dashoffset="-311.01" opacity="0.85"/>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#f0c75e" stroke-width="24"
+              stroke-dasharray="37.70 339.29" stroke-dashoffset="-373.84" opacity="0.85"/>
+          </svg>
+          <div class="donut-center">
+            <div class="donut-center-val">4,624</div>
+            <div class="donut-center-lbl">Total Lines</div>
+          </div>
+        </div>
+        <div class="donut-legend">
+          <div class="dl-item">
+            <div class="dl-dot" style="background:#ae0001;"></div>
+            <span class="dl-name">Gryffindor</span>
+            <span class="dl-val">61% · 2,820</span>
+          </div>
+          <div class="dl-item">
+            <div class="dl-dot" style="background:#2a623d;"></div>
+            <span class="dl-name">Slytherin</span>
+            <span class="dl-val">23% · 1,063</span>
+          </div>
+          <div class="dl-item">
+            <div class="dl-dot" style="background:#4a6fa5;"></div>
+            <span class="dl-name">Ravenclaw</span>
+            <span class="dl-val">10% · 462</span>
+          </div>
+          <div class="dl-item">
+            <div class="dl-dot" style="background:#f0c75e;"></div>
+            <span class="dl-name">Hufflepuff</span>
+            <span class="dl-val">6% · 279</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Dialogue per Movie + Spell Table -->
+  <div class="row-2b">
+
+    <div class="card">
+      <div class="card-title">
+        Dialogue Lines per Movie
+        <span class="card-tag">All 8 Films</span>
+      </div>
+      <div class="movie-grid">
+        <div class="movie-row">
+          <div class="movie-num">1</div>
+          <div class="movie-name">Philosopher's Stone</div>
+          <div class="movie-track"><div class="movie-fill m1" data-w="78">604</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">2</div>
+          <div class="movie-name">Chamber of Secrets</div>
+          <div class="movie-track"><div class="movie-fill m2" data-w="72">558</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">3</div>
+          <div class="movie-name">Prisoner of Azkaban</div>
+          <div class="movie-track"><div class="movie-fill m3" data-w="65">504</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">4</div>
+          <div class="movie-name">Goblet of Fire</div>
+          <div class="movie-track"><div class="movie-fill m4" data-w="80">620</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">5</div>
+          <div class="movie-name">Order of the Phoenix</div>
+          <div class="movie-track"><div class="movie-fill m5" data-w="100">775</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">6</div>
+          <div class="movie-name">Half-Blood Prince</div>
+          <div class="movie-track"><div class="movie-fill m6" data-w="71">550</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">7</div>
+          <div class="movie-name">Deathly Hallows Pt.1</div>
+          <div class="movie-track"><div class="movie-fill m7" data-w="60">465</div></div>
+        </div>
+        <div class="movie-row">
+          <div class="movie-num">8</div>
+          <div class="movie-name">Deathly Hallows Pt.2</div>
+          <div class="movie-track"><div class="movie-fill m8" data-w="55">426</div></div>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">🔍 Key Insight</div>
+        <div class="insight-text">Order of the Phoenix has the highest dialogue density (775 lines), while Deathly Hallows Pt. 2 has the fewest (426) — consistent with the finale's action-heavy, dialogue-light pacing.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        Most Referenced Spells
+        <span class="card-tag">By Incantation in Dialogue</span>
+      </div>
+      <table class="spell-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th>Incantation</th>
+            <th>Type</th>
+            <th style="text-align:right;">Mentions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Disarming Charm</td><td>Expelliarmus</td><td><span class="spell-type type-charm">Charm</span></td><td>43</td></tr>
+          <tr><td>Stunning Spell</td><td>Stupefy</td><td><span class="spell-type type-charm">Charm</span></td><td>38</td></tr>
+          <tr><td>Killing Curse</td><td>Avada Kedavra</td><td><span class="spell-type type-curse">Curse</span></td><td>31</td></tr>
+          <tr><td>Cruciatus Curse</td><td>Crucio</td><td><span class="spell-type type-curse">Curse</span></td><td>18</td></tr>
+          <tr><td>Impediment Jinx</td><td>Impedimenta</td><td><span class="spell-type type-jinx">Jinx</span></td><td>14</td></tr>
+          <tr><td>Shield Charm</td><td>Protego</td><td><span class="spell-type type-charm">Charm</span></td><td>12</td></tr>
+          <tr><td>Levitation Charm</td><td>Wingardium Leviosa</td><td><span class="spell-type type-charm">Charm</span></td><td>10</td></tr>
+          <tr><td>Full Body-Bind</td><td>Petrificus Totalus</td><td><span class="spell-type type-hex">Hex</span></td><td>8</td></tr>
+          <tr><td>Transfiguration</td><td>Finite Incantatem</td><td><span class="spell-type type-trans">Transfig.</span></td><td>7</td></tr>
+          <tr><td>Lumos</td><td>Lumos</td><td><span class="spell-type type-other">Utility</span></td><td>6</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROW 3: Line Chart + Locations + Species -->
+  <div class="row-3">
+
+    <div class="card">
+      <div class="card-title">Harry vs Hermione vs Ron — Lines per Film</div>
+      <div class="line-wrap">
+        <svg viewBox="0 0 300 155" preserveAspectRatio="none">
+          <line x1="0" y1="30" x2="300" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="65" x2="300" y2="65" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="100" x2="300" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="135" x2="300" y2="135" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+          <!-- Harry -->
+          <polyline class="animated-path" points="0,110 42,100 84,95 126,85 168,60 210,75 252,90 294,105"
+            fill="none" stroke="#FFC500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Hermione -->
+          <polyline class="animated-path ap2" points="0,125 42,118 84,112 126,105 168,80 210,95 252,108 294,118"
+            fill="none" stroke="#48cae4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Ron -->
+          <polyline class="animated-path ap3" points="0,130 42,125 84,120 126,115 168,95 210,112 252,120 294,128"
+            fill="none" stroke="#eb5757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- X labels -->
+          <text x="0"   y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">P.S.</text>
+          <text x="34"  y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">C.S.</text>
+          <text x="68"  y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">P.A.</text>
+          <text x="102" y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">G.F.</text>
+          <text x="136" y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">O.P.</text>
+          <text x="174" y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">H.P.</text>
+          <text x="210" y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">DH1</text>
+          <text x="246" y="152" fill="rgba(232,220,200,0.35)" font-size="7.5" font-family="Cinzel">DH2</text>
+        </svg>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:6px;flex-wrap:wrap;">
+        <div class="dl-item"><div class="dl-dot" style="background:#FFC500;"></div><span style="font-size:0.65rem;opacity:0.7;font-family:Cinzel;">Harry</span></div>
+        <div class="dl-item"><div class="dl-dot" style="background:#48cae4;"></div><span style="font-size:0.65rem;opacity:0.7;font-family:Cinzel;">Hermione</span></div>
+        <div class="dl-item"><div class="dl-dot" style="background:#eb5757;"></div><span style="font-size:0.65rem;opacity:0.7;font-family:Cinzel;">Ron</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Top Locations Referenced</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-name">Hogwarts</div>
+          <div class="hbar-track"><div class="hbar-fill c3" data-w="100">312</div></div>
+          <div class="hbar-num">312</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Ministry of Magic</div>
+          <div class="hbar-track"><div class="hbar-fill c3" data-w="52">162</div></div>
+          <div class="hbar-num">162</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Diagon Alley</div>
+          <div class="hbar-track"><div class="hbar-fill cg" data-w="38">118</div></div>
+          <div class="hbar-num">118</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Azkaban</div>
+          <div class="hbar-track"><div class="hbar-fill c1" data-w="28">87</div></div>
+          <div class="hbar-num">87</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Hogsmeade</div>
+          <div class="hbar-track"><div class="hbar-fill c2" data-w="22">68</div></div>
+          <div class="hbar-num">68</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Forbidden Forest</div>
+          <div class="hbar-track"><div class="hbar-fill c2" data-w="15">46</div></div>
+          <div class="hbar-num">46</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-name">Grimmauld Place</div>
+          <div class="hbar-track"><div class="hbar-fill c5" data-w="11">34</div></div>
+          <div class="hbar-num">34</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Spell Types Breakdown</div>
+      <div style="display:flex;flex-direction:column;gap:11px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Charms</span>
+            <span class="spell-type type-charm">42% · 28 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:42%;height:100%;background:linear-gradient(90deg,#48cae4,#90e0ef);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Curses</span>
+            <span class="spell-type type-curse">19% · 13 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:19%;height:100%;background:linear-gradient(90deg,#ae0001,#e63946);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Jinxes</span>
+            <span class="spell-type type-jinx">13% · 9 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:13%;height:100%;background:linear-gradient(90deg,#7b68ee,#b8aaff);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Hexes</span>
+            <span class="spell-type type-hex">9% · 6 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:9%;height:100%;background:linear-gradient(90deg,#ff8c00,#ffab40);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Transfiguration</span>
+            <span class="spell-type type-trans">10% · 7 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:10%;height:100%;background:linear-gradient(90deg,#2a623d,#6fcf97);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:0.72rem;opacity:0.75;">Other / Utility</span>
+            <span class="spell-type type-other">7% · 4 spells</span>
+          </div>
+          <div style="height:7px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden;">
+            <div style="width:7%;height:100%;background:rgba(255,255,255,0.2);border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="insight" style="margin-top:16px;">
+        <div class="insight-label">🔍 Key Insight</div>
+        <div class="insight-text">Charms dominate the wizarding arsenal at 42%. The 3 Unforgivable Curses account for just 4.5% of spell types but are referenced in 82% of all films.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Samuel Then · Data Analyst · Portfolio Project · 2024</div>
+  <div class="footer-tools">
+    <span class="tool-chip">SQL</span>
+    <span class="tool-chip">Tableau</span>
+    <span class="tool-chip">Power BI</span>
+    <span class="tool-chip">Advanced Excel</span>
+    <span class="tool-chip">DAX</span>
+  </div>
+  <div>Data: Kaggle · maricinnamon/harry-potter-movies-dataset</div>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.hbar-fill, .movie-fill').forEach(el => {
+        el.style.width = el.dataset.w + '%';
+      });
+    }, 400);
+  });
+
+  function filterHouse(house, btn) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
