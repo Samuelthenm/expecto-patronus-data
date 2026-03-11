@@ -7,17 +7,14 @@ Analysis of the Harry Potter movies dataset from Kaggle — all 8 films, coverin
 ## what's in here
 
 ```
-hp-movies-analytics/
-│
-├── data/
-│   ├── raw/           # original CSVs from Kaggle (not pushed — download link below)
-│   └── clean/         # cleaned and joined tables, ready for Tableau
+expecto-patronus-data/
 │
 ├── sql/
 │   └── queries.sql    # cleaning, joins, aggregations
 │
-├── dashboard/
-│   └── index.html     # web dashboard for portfolio preview
+├── index.html         # interactive web dashboard
+├── style.css          # dashboard styles
+├── main.js            # dashboard logic and chart rendering
 │
 └── README.md
 ```
@@ -31,7 +28,7 @@ https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset
 
 Comes with 7 CSVs: Characters, Dialogues, Movies, Spells, Places, Chapters, Data Dictionary. Uses semicolon delimiters which tripped me up at first — worth knowing before you import.
 
-Raw files are not pushed to this repo. Download directly from Kaggle and drop them in /data/raw/ to run the queries yourself.
+Raw files are not pushed to this repo. Download directly from Kaggle and drop them into the dashboard to run the analysis yourself.
 
 ---
 
@@ -70,7 +67,7 @@ Tableau dashboard coming soon — will link here once published to Tableau Publi
 
 ## dashboard
 
-The html file in /dashboard/ is the portfolio version. Open it in any browser.
+Open index.html in any browser. You can upload the Kaggle CSVs directly or use the demo data to preview the dashboard without downloading anything.
 
 ---
 
