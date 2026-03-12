@@ -59,7 +59,7 @@ All of that is in sql/queries.sql if you want to see it.
 
 ## tools used
 
-SQL, Tableau, Advanced Excel, Power BI, DAX
+SQL, Tableau, Advanced Excel, DAX
 
 Tableau dashboard coming soon — will link here once published to Tableau Public.
 
