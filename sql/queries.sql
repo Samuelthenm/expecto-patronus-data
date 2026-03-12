@@ -3,10 +3,7 @@
 -- note: delimiter is semicolon, make sure to set that on import
 
 
--- -------------------------
 -- data cleanup
--- -------------------------
-
 -- trim any extra spaces that snuck in
 UPDATE characters
 SET character_name = TRIM(character_name),
@@ -47,10 +44,6 @@ DELETE FROM dialogues
 WHERE character_name IS NULL OR TRIM(character_name) = '';
 
 
--- -------------------------
--- exploratory
--- -------------------------
-
 -- how many lines does each movie have?
 SELECT
     m.movie_title,
@@ -72,7 +65,6 @@ LIMIT 15;
 
 
 -- lines per character broken down by movie
--- useful for the trend chart
 SELECT
     m.movie_title,
     d.character_name,
@@ -105,10 +97,6 @@ GROUP BY c.house
 ORDER BY total_lines DESC;
 
 
--- -------------------------
--- spells
--- -------------------------
-
 -- how many spells per type
 SELECT
     spell_type,
@@ -118,8 +106,7 @@ GROUP BY spell_type
 ORDER BY total_spells DESC;
 
 
--- which spells actually get said out loud in the movies
--- matching incantation text against dialogue
+-- spells in dialogue
 SELECT
     s.spell_name,
     s.incantation,
@@ -143,10 +130,6 @@ GROUP BY m.movie_title
 ORDER BY m.movie_id;
 
 
--- -------------------------
--- locations
--- -------------------------
-
 -- most mentioned places across all dialogue
 SELECT
     p.place_name,
@@ -169,10 +152,6 @@ JOIN movies m ON d.movie_id = m.movie_id
 GROUP BY m.movie_title, p.place_name
 ORDER BY m.movie_id, mentions DESC;
 
-
--- -------------------------
--- final tables for tableau
--- -------------------------
 
 -- main dialogue table with everything joined and cleaned up
 SELECT
