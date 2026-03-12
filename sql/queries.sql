@@ -1,16 +1,13 @@
--- ============================================================
--- HARRY POTTER MOVIES DATASET — SQL QUERIES
--- Author: Samuel Then | Data Analyst
--- Dataset: kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset
--- Delimiter: semicolon (;) — import accordingly
--- ============================================================
+-- Harry Potter Movies Dataset - SQL Queries
+-- dataset from kaggle (maricinnamon/harry-potter-movies-dataset)
+-- note: delimiter is semicolon, make sure to set that on import
 
 
--- ============================================================
--- SECTION 1: DATA CLEANING
--- ============================================================
+-- -------------------------
+-- data cleanup
+-- -------------------------
 
--- 1.1 Trim whitespace from all key text fields (run after import)
+-- trim any extra spaces that snuck in
 UPDATE characters
 SET character_name = TRIM(character_name),
     house          = TRIM(house),
@@ -21,23 +18,23 @@ SET character_name = TRIM(character_name),
     dialogue       = TRIM(dialogue);
 
 UPDATE spells
-SET spell_name = TRIM(spell_name),
-    incantation = TRIM(incantation),
-    spell_type  = TRIM(spell_type);
+SET spell_name  = TRIM(spell_name),
+    incantation  = TRIM(incantation),
+    spell_type   = TRIM(spell_type);
 
 UPDATE places
 SET place_name = TRIM(place_name);
 
--- 1.2 Standardize case inconsistencies
+-- fix random capitalization issues in house names
 UPDATE characters
 SET house = UPPER(SUBSTRING(LOWER(house), 1, 1)) || LOWER(SUBSTRING(house, 2));
 
--- 1.3 Replace NULL or blank house values with 'Unknown'
+-- some characters don't have a house assigned, just label them unknown
 UPDATE characters
 SET house = 'Unknown'
 WHERE house IS NULL OR TRIM(house) = '';
 
--- 1.4 Remove duplicate dialogue rows
+-- remove duplicate dialogue rows, keep the first one
 DELETE FROM dialogues
 WHERE id NOT IN (
     SELECT MIN(id)
@@ -45,16 +42,16 @@ WHERE id NOT IN (
     GROUP BY character_name, dialogue, movie_id
 );
 
--- 1.5 Remove rows with no character name in dialogues
+-- drop any dialogue rows where character name is missing
 DELETE FROM dialogues
 WHERE character_name IS NULL OR TRIM(character_name) = '';
 
 
--- ============================================================
--- SECTION 2: EXPLORATORY ANALYSIS
--- ============================================================
+-- -------------------------
+-- exploratory
+-- -------------------------
 
--- 2.1 Total dialogue lines per movie
+-- how many lines does each movie have?
 SELECT
     m.movie_title,
     COUNT(d.id) AS total_lines
@@ -64,7 +61,7 @@ GROUP BY m.movie_title
 ORDER BY m.movie_id;
 
 
--- 2.2 Top 15 most talkative characters across all movies
+-- who talks the most? top 15
 SELECT
     character_name,
     COUNT(*) AS total_lines
@@ -74,7 +71,8 @@ ORDER BY total_lines DESC
 LIMIT 15;
 
 
--- 2.3 Dialogue lines per character per movie (for trend analysis)
+-- lines per character broken down by movie
+-- useful for the trend chart
 SELECT
     m.movie_title,
     d.character_name,
@@ -85,7 +83,7 @@ GROUP BY m.movie_title, d.character_name
 ORDER BY m.movie_id, lines DESC;
 
 
--- 2.4 Top characters by house (join characters + dialogues)
+-- joining characters with dialogues to get house info
 SELECT
     c.house,
     d.character_name,
@@ -96,7 +94,7 @@ GROUP BY c.house, d.character_name
 ORDER BY c.house, total_lines DESC;
 
 
--- 2.5 Total lines per house across all movies
+-- total lines per house
 SELECT
     c.house,
     COUNT(d.id) AS total_lines
@@ -107,11 +105,11 @@ GROUP BY c.house
 ORDER BY total_lines DESC;
 
 
--- ============================================================
--- SECTION 3: SPELL ANALYSIS
--- ============================================================
+-- -------------------------
+-- spells
+-- -------------------------
 
--- 3.1 Total number of spells by type
+-- how many spells per type
 SELECT
     spell_type,
     COUNT(*) AS total_spells
@@ -120,7 +118,8 @@ GROUP BY spell_type
 ORDER BY total_spells DESC;
 
 
--- 3.2 Most mentioned spells in dialogue (spell name appears in dialogue text)
+-- which spells actually get said out loud in the movies
+-- matching incantation text against dialogue
 SELECT
     s.spell_name,
     s.incantation,
@@ -133,7 +132,7 @@ ORDER BY times_mentioned DESC
 LIMIT 20;
 
 
--- 3.3 Spells per movie (incantation mentioned in dialogue)
+-- spells mentioned per movie
 SELECT
     m.movie_title,
     COUNT(DISTINCT s.spell_name) AS unique_spells_used
@@ -144,11 +143,11 @@ GROUP BY m.movie_title
 ORDER BY m.movie_id;
 
 
--- ============================================================
--- SECTION 4: LOCATION ANALYSIS
--- ============================================================
+-- -------------------------
+-- locations
+-- -------------------------
 
--- 4.1 Most frequently mentioned places in dialogue
+-- most mentioned places across all dialogue
 SELECT
     p.place_name,
     COUNT(d.id) AS times_mentioned
@@ -159,7 +158,7 @@ ORDER BY times_mentioned DESC
 LIMIT 15;
 
 
--- 4.2 Places mentioned per movie
+-- places broken down by movie
 SELECT
     m.movie_title,
     p.place_name,
@@ -171,11 +170,11 @@ GROUP BY m.movie_title, p.place_name
 ORDER BY m.movie_id, mentions DESC;
 
 
--- ============================================================
--- SECTION 5: FINAL CLEAN TABLES FOR TABLEAU/POWER BI
--- ============================================================
+-- -------------------------
+-- final tables for tableau
+-- -------------------------
 
--- 5.1 Master dialogue table — clean, joined, ready for viz
+-- main dialogue table with everything joined and cleaned up
 SELECT
     d.id                          AS dialogue_id,
     m.movie_title,
@@ -186,12 +185,12 @@ SELECT
     d.dialogue,
     LENGTH(d.dialogue)            AS dialogue_length
 FROM dialogues d
-LEFT JOIN movies    m ON d.movie_id       = m.movie_id
+LEFT JOIN movies     m ON d.movie_id = m.movie_id
 LEFT JOIN characters c ON LOWER(TRIM(d.character_name)) = LOWER(TRIM(c.character_name))
 ORDER BY m.movie_id, d.id;
 
 
--- 5.2 Summary table — lines per character per movie (Tableau-ready)
+-- summary by character and movie, good for the bar charts
 SELECT
     m.movie_title,
     m.movie_id,
@@ -200,15 +199,15 @@ SELECT
     COUNT(d.id)                  AS total_lines,
     AVG(LENGTH(d.dialogue))      AS avg_dialogue_length
 FROM dialogues d
-LEFT JOIN movies     m ON d.movie_id       = m.movie_id
+LEFT JOIN movies     m ON d.movie_id = m.movie_id
 LEFT JOIN characters c ON LOWER(TRIM(d.character_name)) = LOWER(TRIM(c.character_name))
 GROUP BY m.movie_title, m.movie_id, d.character_name, c.house
 ORDER BY m.movie_id, total_lines DESC;
 
 
--- 5.3 House summary table (Tableau-ready)
+-- house level summary
 SELECT
-    COALESCE(c.house, 'Unknown') AS house,
+    COALESCE(c.house, 'Unknown')     AS house,
     COUNT(DISTINCT d.character_name) AS unique_characters,
     COUNT(d.id)                      AS total_lines,
     AVG(LENGTH(d.dialogue))          AS avg_dialogue_length
