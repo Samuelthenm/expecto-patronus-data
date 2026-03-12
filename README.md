@@ -1,18 +1,6 @@
 # Overview
 Analysis of the Harry Potter movies dataset from Kaggle — all 8 films, covering dialogue, characters, spells and locations. Built this one because I wanted to work with a real messy dataset on something I actually enjoy, and turns out wizard dialogue data is surprisingly interesting to dig into.
 
-# Folder Structure
-expecto-patronus-data/
-│
-├── sql/
-│   └── queries.sql
-│
-├── index.html         
-├── style.css          
-├── main.js            
-│
-└── README.md
-
 # The data
 Kaggle dataset by maricinnamon — link here:
 (https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset)
