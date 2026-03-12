@@ -40,10 +40,11 @@ The data needed some work before it was usable. Main things I did in SQL:
 
 All of that is in sql/queries.sql if you want to see it.
 
-# tools used
+# Tools Used
 SQL, Tableau, Advanced Excel, DAX
 
-Tableau preview ![Harry Potter Tableau]([https://yourimage-url.com/image.png](https://samuelthenm.github.io/expecto-patronus-data/tableaupreview.png))
+## Tableau Preview
+![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/tableaupreview.png)
 
 # dashboard
 Open index.html in any browser. You can upload the Kaggle CSVs directly or use the demo data to preview the dashboard without downloading anything.
