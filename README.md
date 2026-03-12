@@ -1,7 +1,7 @@
-# expecto-patronus-data
+# Overview
 Analysis of the Harry Potter movies dataset from Kaggle — all 8 films, covering dialogue, characters, spells and locations. Built this one because I wanted to work with a real messy dataset on something I actually enjoy, and turns out wizard dialogue data is surprisingly interesting to dig into.
 
-# what's in here
+# Folder Structure
 expecto-patronus-data/
 │
 ├── sql/
@@ -13,7 +13,7 @@ expecto-patronus-data/
 │
 └── README.md
 
-# the data
+# The data
 Kaggle dataset by maricinnamon — link here:
 (https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset)
 
@@ -22,7 +22,7 @@ Comes with 7 CSVs: Characters, Dialogues, Movies, Spells, Places, Chapters, Data
 Raw files are not pushed to this repo. Download directly from Kaggle and drop them into the dashboard to run the analysis yourself.
 
 
-# what I looked at
+# What I observed
 - which characters speak the most across all 8 films
 - how dialogue is split across the four houses
 - which movie has the most and least lines
@@ -30,7 +30,7 @@ Raw files are not pushed to this repo. Download directly from Kaggle and drop th
 - how Harry, Hermione and Ron's screen presence shifts across the series
 - which locations come up most in dialogue
 
-# cleaning notes
+# What I cleaned
 The data needed some work before it was usable. Main things I did in SQL:
 - trimmed whitespace from character names and dialogue fields (there were a lot of inconsistencies)
 - standardized house name casing
@@ -45,3 +45,6 @@ SQL, Tableau, Advanced Excel, DAX
 
 ## Tableau Preview
 ![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif)
+
+## Live Demo
+([https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif](https://samuelthenm.github.io/expecto-patronus-data/))
