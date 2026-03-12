@@ -1,0 +1,393 @@
+movie_title,movie_id,character_name,house,total_lines,avg_dialogue_length
+Harry Potter and the Philosopher's Stone,1,Harry Potter,Gryffindor,233,39.128755364806864
+Harry Potter and the Philosopher's Stone,1,Ron Weasley,Gryffindor,137,42.160583941605836
+Harry Potter and the Philosopher's Stone,1,Hermione Granger,Gryffindor,95,56.56842105263158
+Harry Potter and the Philosopher's Stone,1,Rubeus Hagrid,Gryffindor,85,91.54117647058824
+Harry Potter and the Philosopher's Stone,1,Minerva McGonagall,Gryffindor,31,93.96774193548387
+Harry Potter and the Philosopher's Stone,1,Vernon Dursley,Unknown,25,42.8
+Harry Potter and the Philosopher's Stone,1,Albus Dumbledore,Gryffindor,24,165.25
+Harry Potter and the Philosopher's Stone,1,Dudley Dursley,Unknown,17,26.705882352941178
+Harry Potter and the Philosopher's Stone,1,Neville Longbottom,Gryffindor,17,36.529411764705884
+Harry Potter and the Philosopher's Stone,1,Petunia Dursley,Unknown,17,82.3529411764706
+Harry Potter and the Philosopher's Stone,1,Quirinus Quirrell,Ravenclaw,17,80.3529411764706
+Harry Potter and the Philosopher's Stone,1,Draco Malfoy,Slytherin,13,83.15384615384616
+Harry Potter and the Philosopher's Stone,1,Rolanda Hooch,Unknown,13,87.61538461538461
+Harry Potter and the Philosopher's Stone,1,Severus Snape,Slytherin,10,194.5
+Harry Potter and the Philosopher's Stone,1,Voldemort,Slytherin,10,81.6
+Harry Potter and the Philosopher's Stone,1,Lee Jordan,Gryffindor,9,72.11111111111111
+Harry Potter and the Philosopher's Stone,1,Percy Weasley,Gryffindor,9,80.55555555555556
+Harry Potter and the Philosopher's Stone,1,Oliver Wood,Gryffindor,8,119.5
+Harry Potter and the Philosopher's Stone,1,Seamus Finnigan,Gryffindor,8,50.875
+Harry Potter and the Philosopher's Stone,1,Girl,Unknown,7,20.285714285714285
+Harry Potter and the Philosopher's Stone,1,Sorting Hat,Unknown,7,77.57142857142857
+Harry Potter and the Philosopher's Stone,1,Argus Filch,Unknown,6,131.33333333333334
+Harry Potter and the Philosopher's Stone,1,Boy,Unknown,5,39.2
+Harry Potter and the Philosopher's Stone,1,Filius Flitwick,Ravenclaw,5,78.4
+Harry Potter and the Philosopher's Stone,1,Firenze,Unknown,5,114.6
+Harry Potter and the Philosopher's Stone,1,Fred Weasley,Gryffindor,5,43.2
+Harry Potter and the Philosopher's Stone,1,George Weasley,Gryffindor,5,47.6
+Harry Potter and the Philosopher's Stone,1,Molly Weasley,Gryffindor,5,78.6
+Harry Potter and the Philosopher's Stone,1,Nearly Headless Nick,Gryffindor,5,50.0
+Harry Potter and the Philosopher's Stone,1,Man,Unknown,4,18.0
+Harry Potter and the Philosopher's Stone,1,Garrick Ollivander,Ravenclaw,3,260.0
+Harry Potter and the Philosopher's Stone,1,Griphook,Unknown,3,19.333333333333332
+Harry Potter and the Philosopher's Stone,1,All,Unknown,2,14.5
+Harry Potter and the Philosopher's Stone,1,Class,Unknown,2,15.5
+Harry Potter and the Philosopher's Stone,1,Marcus Flint,Slytherin,2,14.0
+Harry Potter and the Philosopher's Stone,1,Merpeople,Unknown,2,24.5
+Harry Potter and the Philosopher's Stone,1,Old man,Unknown,2,31.5
+Harry Potter and the Philosopher's Stone,1,Tom,Unknown,2,33.0
+Harry Potter and the Philosopher's Stone,1,Bloody Baron,Slytherin,1,13.0
+Harry Potter and the Philosopher's Stone,1,Boy 2,Unknown,1,27.0
+Harry Potter and the Philosopher's Stone,1,Crowd,Unknown,1,71.0
+Harry Potter and the Philosopher's Stone,1,Ginny Weasley,Gryffindor,1,10.0
+Harry Potter and the Philosopher's Stone,1,Goblin,Unknown,1,69.0
+Harry Potter and the Philosopher's Stone,1,Gryffindors,Unknown,1,4.0
+Harry Potter and the Philosopher's Stone,1,Man in a painting,Unknown,1,92.0
+Harry Potter and the Philosopher's Stone,1,Shrunken head,Unknown,1,20.0
+Harry Potter and the Philosopher's Stone,1,Student,Unknown,1,7.0
+Harry Potter and the Philosopher's Stone,1,Students,Unknown,1,20.0
+Harry Potter and the Philosopher's Stone,1,The Fat Lady,Unknown,1,9.0
+Harry Potter and the Philosopher's Stone,1,Woman,Unknown,1,32.0
+Harry Potter and the Chamber of Secrets,2,Harry Potter,Gryffindor,262,42.63740458015267
+Harry Potter and the Chamber of Secrets,2,Ron Weasley,Gryffindor,143,33.23776223776224
+Harry Potter and the Chamber of Secrets,2,Hermione Granger,Gryffindor,69,57.69565217391305
+Harry Potter and the Chamber of Secrets,2,Gilderoy Lockhart,Ravenclaw,47,103.36170212765957
+Harry Potter and the Chamber of Secrets,2,Albus Dumbledore,Gryffindor,44,95.5909090909091
+Harry Potter and the Chamber of Secrets,2,Dobby,Unknown,37,70.35135135135135
+Harry Potter and the Chamber of Secrets,2,Rubeus Hagrid,Gryffindor,37,82.56756756756756
+Harry Potter and the Chamber of Secrets,2,Tom Riddle,Slytherin,32,110.875
+Harry Potter and the Chamber of Secrets,2,Lucius Malfoy,Slytherin,27,75.88888888888889
+Harry Potter and the Chamber of Secrets,2,Draco Malfoy,Slytherin,25,73.36
+Harry Potter and the Chamber of Secrets,2,Minerva McGonagall,Gryffindor,24,133.16666666666666
+Harry Potter and the Chamber of Secrets,2,Vernon Dursley,Unknown,23,68.17391304347827
+Harry Potter and the Chamber of Secrets,2,Molly Weasley,Gryffindor,20,65.4
+Harry Potter and the Chamber of Secrets,2,Arthur Weasley,Gryffindor,14,46.857142857142854
+Harry Potter and the Chamber of Secrets,2,Moaning Myrtle,Ravenclaw,14,91.64285714285714
+Harry Potter and the Chamber of Secrets,2,Severus Snape,Slytherin,12,103.58333333333333
+Harry Potter and the Chamber of Secrets,2,Other,Unknown,11,25.818181818181817
+Harry Potter and the Chamber of Secrets,2,Students,Unknown,9,14.333333333333334
+Harry Potter and the Chamber of Secrets,2,Aragog,Unknown,8,82.75
+Harry Potter and the Chamber of Secrets,2,Argus Filch,Unknown,7,64.57142857142857
+Harry Potter and the Chamber of Secrets,2,Fred Weasley,Gryffindor,7,37.57142857142857
+Harry Potter and the Chamber of Secrets,2,Neville Longbottom,Gryffindor,7,30.0
+Harry Potter and the Chamber of Secrets,2,Oliver Wood,Gryffindor,7,75.71428571428571
+Harry Potter and the Chamber of Secrets,2,Dudley Dursley,Unknown,6,18.5
+Harry Potter and the Chamber of Secrets,2,Percy Weasley,Gryffindor,6,46.833333333333336
+Harry Potter and the Chamber of Secrets,2,Pomona Sprout,Hufflepuff,6,151.33333333333334
+Harry Potter and the Chamber of Secrets,2,Poppy Pomfrey,Unknown,6,69.66666666666667
+Harry Potter and the Chamber of Secrets,2,Cornelius Fudge,Unknown,5,54.0
+Harry Potter and the Chamber of Secrets,2,George Weasley,Gryffindor,5,13.4
+Harry Potter and the Chamber of Secrets,2,Petunia Dursley,Unknown,5,27.6
+Harry Potter and the Chamber of Secrets,2,Serpent of Slitherin,Unknown,5,40.0
+Harry Potter and the Chamber of Secrets,2,Marcus Flint,Slytherin,4,21.25
+Harry Potter and the Chamber of Secrets,2,Nearly Headless Nick,Gryffindor,4,23.5
+Harry Potter and the Chamber of Secrets,2,Seamus Finnigan,Gryffindor,4,27.25
+Harry Potter and the Chamber of Secrets,2,Snatcher,Unknown,4,11.5
+Harry Potter and the Chamber of Secrets,2,Diary,Unknown,3,35.333333333333336
+Harry Potter and the Chamber of Secrets,2,Ginny Weasley,Gryffindor,3,46.666666666666664
+Harry Potter and the Chamber of Secrets,2,Sorting Hat,Unknown,3,51.666666666666664
+Harry Potter and the Chamber of Secrets,2,Vincent Crabbe,Slytherin,3,17.0
+Harry Potter and the Chamber of Secrets,2,All,Unknown,2,20.0
+Harry Potter and the Chamber of Secrets,2,Colin Creevey,Gryffindor,2,44.5
+Harry Potter and the Chamber of Secrets,2,Lee Jordan,Gryffindor,2,59.0
+Harry Potter and the Chamber of Secrets,2,Snake,Unknown,2,69.0
+Harry Potter and the Chamber of Secrets,2,Dean Thomas,Gryffindor,1,22.0
+Harry Potter and the Chamber of Secrets,2,Goblin,Unknown,1,26.0
+Harry Potter and the Chamber of Secrets,2,Gregory Goyle,Slytherin,1,7.0
+Harry Potter and the Chamber of Secrets,2,Justin Finch-Fletchley,Hufflepuff,1,24.0
+Harry Potter and the Chamber of Secrets,2,Photographer,Unknown,1,313.0
+Harry Potter and the Chamber of Secrets,2,Shrunken head,Unknown,1,22.0
+Harry Potter and the Chamber of Secrets,2,Waiter,Unknown,1,39.0
+Harry Potter and the Chamber of Secrets,2,Whomping Willow,Unknown,1,5.0
+Harry Potter and the Prisoner of Azkaban,3,Harry Potter,Gryffindor,194,36.365979381443296
+Harry Potter and the Prisoner of Azkaban,3,Hermione Granger,Gryffindor,125,44.168
+Harry Potter and the Prisoner of Azkaban,3,Ron Weasley,Gryffindor,101,42.26732673267327
+Harry Potter and the Prisoner of Azkaban,3,Remus Lupin,Gryffindor,65,124.95384615384616
+Harry Potter and the Prisoner of Azkaban,3,Albus Dumbledore,Gryffindor,36,97.66666666666667
+Harry Potter and the Prisoner of Azkaban,3,Cornelius Fudge,Unknown,36,62.80555555555556
+Harry Potter and the Prisoner of Azkaban,3,Sirius Black,Gryffindor,32,80.5
+Harry Potter and the Prisoner of Azkaban,3,Rubeus Hagrid,Gryffindor,31,99.48387096774194
+Harry Potter and the Prisoner of Azkaban,3,Severus Snape,Slytherin,28,89.14285714285714
+Harry Potter and the Prisoner of Azkaban,3,Fred Weasley,Gryffindor,21,36.476190476190474
+Harry Potter and the Prisoner of Azkaban,3,George Weasley,Gryffindor,21,45.23809523809524
+Harry Potter and the Prisoner of Azkaban,3,Draco Malfoy,Slytherin,19,68.15789473684211
+Harry Potter and the Prisoner of Azkaban,3,Marge Dursley,Unknown,12,110.83333333333333
+Harry Potter and the Prisoner of Azkaban,3,Stanley Shunpike,Unknown,12,75.16666666666667
+Harry Potter and the Prisoner of Azkaban,3,Minerva McGonagall,Gryffindor,11,99.63636363636364
+Harry Potter and the Prisoner of Azkaban,3,Vernon Dursley,Unknown,11,47.45454545454545
+Harry Potter and the Prisoner of Azkaban,3,Arthur Weasley,Gryffindor,10,75.2
+Harry Potter and the Prisoner of Azkaban,3,Neville Longbottom,Gryffindor,10,19.6
+Harry Potter and the Prisoner of Azkaban,3,Rosmerta,Unknown,9,47.22222222222222
+Harry Potter and the Prisoner of Azkaban,3,Seamus Finnigan,Gryffindor,9,45.77777777777778
+Harry Potter and the Prisoner of Azkaban,3,Sybill Trelawney,Ravenclaw,9,176.66666666666666
+Harry Potter and the Prisoner of Azkaban,3,Molly Weasley,Gryffindor,7,24.428571428571427
+Harry Potter and the Prisoner of Azkaban,3,Station guard,Unknown,7,106.85714285714286
+Harry Potter and the Prisoner of Azkaban,3,Maid,Unknown,5,22.2
+Harry Potter and the Prisoner of Azkaban,3,Percy Weasley,Gryffindor,5,63.8
+Harry Potter and the Prisoner of Azkaban,3,Peter Pettigrew,Gryffindor,5,132.8
+Harry Potter and the Prisoner of Azkaban,3,Argus Filch,Unknown,4,59.25
+Harry Potter and the Prisoner of Azkaban,3,Other,Unknown,4,101.0
+Harry Potter and the Prisoner of Azkaban,3,Vincent Crabbe,Slytherin,4,16.5
+Harry Potter and the Prisoner of Azkaban,3,Petunia Dursley,Unknown,3,39.0
+Harry Potter and the Prisoner of Azkaban,3,The Fat Lady,Unknown,3,84.33333333333333
+Harry Potter and the Prisoner of Azkaban,3,Tom,Unknown,3,15.0
+Harry Potter and the Prisoner of Azkaban,3,All,Unknown,1,11.0
+Harry Potter and the Prisoner of Azkaban,3,Dean Thomas,Gryffindor,1,26.0
+Harry Potter and the Prisoner of Azkaban,3,Filius Flitwick,Ravenclaw,1,33.0
+Harry Potter and the Prisoner of Azkaban,3,Ginny Weasley,Gryffindor,1,25.0
+Harry Potter and the Prisoner of Azkaban,3,Pansy Parkinson,Slytherin,1,29.0
+Harry Potter and the Prisoner of Azkaban,3,Parvati Patil,Gryffindor,1,11.0
+Harry Potter and the Prisoner of Azkaban,3,Pixie,Unknown,1,35.0
+Harry Potter and the Prisoner of Azkaban,3,Students,Unknown,1,53.0
+Harry Potter and the Goblet of Fire,4,Harry Potter,Gryffindor,156,35.31410256410256
+Harry Potter and the Goblet of Fire,4,Ron Weasley,Gryffindor,74,48.945945945945944
+Harry Potter and the Goblet of Fire,4,Albus Dumbledore,Gryffindor,71,109.6056338028169
+Harry Potter and the Goblet of Fire,4,Hermione Granger,Gryffindor,62,56.82258064516129
+Harry Potter and the Goblet of Fire,4,Alastor Moody,Unknown,55,82.32727272727273
+Harry Potter and the Goblet of Fire,4,Barty Crouch Sr.,Unknown,26,78.73076923076923
+Harry Potter and the Goblet of Fire,4,Voldemort,Slytherin,23,98.73913043478261
+Harry Potter and the Goblet of Fire,4,Cedric Diggory,Hufflepuff,22,33.27272727272727
+Harry Potter and the Goblet of Fire,4,Minerva McGonagall,Gryffindor,21,79.0952380952381
+Harry Potter and the Goblet of Fire,4,Arthur Weasley,Gryffindor,19,42.8421052631579
+Harry Potter and the Goblet of Fire,4,Fred Weasley,Gryffindor,19,28.526315789473685
+Harry Potter and the Goblet of Fire,4,George Weasley,Gryffindor,18,22.38888888888889
+Harry Potter and the Goblet of Fire,4,Rubeus Hagrid,Gryffindor,16,80.625
+Harry Potter and the Goblet of Fire,4,Igor Karkaroff,Unknown,15,43.6
+Harry Potter and the Goblet of Fire,4,Neville Longbottom,Gryffindor,13,44.76923076923077
+Harry Potter and the Goblet of Fire,4,Rita Skeeter,Unknown,12,122.75
+Harry Potter and the Goblet of Fire,4,Sirius Black,Gryffindor,11,104.81818181818181
+Harry Potter and the Goblet of Fire,4,Amos Diggory,Unknown,9,29.88888888888889
+Harry Potter and the Goblet of Fire,4,Cho Chang,Ravenclaw,8,30.875
+Harry Potter and the Goblet of Fire,4,Olympe Maxime,Beauxbatons academy of magic,8,49.25
+Harry Potter and the Goblet of Fire,4,Peter Pettigrew,Gryffindor,8,37.75
+Harry Potter and the Goblet of Fire,4,Cornelius Fudge,Unknown,6,87.0
+Harry Potter and the Goblet of Fire,4,Gang thug,Unknown,6,32.333333333333336
+Harry Potter and the Goblet of Fire,4,Moaning Myrtle,Ravenclaw,6,61.666666666666664
+Harry Potter and the Goblet of Fire,4,Parvati Patil,Gryffindor,6,15.833333333333334
+Harry Potter and the Goblet of Fire,4,Severus Snape,Slytherin,6,143.5
+Harry Potter and the Goblet of Fire,4,Barty Crouch Jr.,Unknown,5,48.6
+Harry Potter and the Goblet of Fire,4,Lucius Malfoy,Slytherin,4,92.0
+Harry Potter and the Goblet of Fire,4,Seamus Finnigan,Gryffindor,4,39.0
+Harry Potter and the Goblet of Fire,4,Draco Malfoy,Slytherin,3,93.33333333333333
+Harry Potter and the Goblet of Fire,4,Fleur Delacour,Beauxbatons academy of magic,3,39.666666666666664
+Harry Potter and the Goblet of Fire,4,Padma Patil,Ravenclaw,3,31.0
+Harry Potter and the Goblet of Fire,4,Waitress,Unknown,3,37.666666666666664
+Harry Potter and the Goblet of Fire,4,Ginny Weasley,Gryffindor,2,29.5
+Harry Potter and the Goblet of Fire,4,Skinny kid,Unknown,2,68.5
+Harry Potter and the Goblet of Fire,4,Viktor Krum,Durmstrang institute,2,43.5
+Harry Potter and the Goblet of Fire,4,Centaur,Unknown,1,12.0
+Harry Potter and the Goblet of Fire,4,Dean Thomas,Gryffindor,1,29.0
+Harry Potter and the Goblet of Fire,4,Filius Flitwick,Ravenclaw,1,10.0
+Harry Potter and the Goblet of Fire,4,James Potter,Gryffindor,1,148.0
+Harry Potter and the Goblet of Fire,4,Lily Potter,Gryffindor,1,48.0
+Harry Potter and the Goblet of Fire,4,Nigel Wolpert,Gryffindor,1,26.0
+Harry Potter and the Order of the Phoenix,5,Harry Potter,Gryffindor,292,33.56506849315068
+Harry Potter and the Order of the Phoenix,5,Albus Dumbledore,Gryffindor,99,79.70707070707071
+Harry Potter and the Order of the Phoenix,5,Hermione Granger,Gryffindor,93,46.225806451612904
+Harry Potter and the Order of the Phoenix,5,Dolores Umbridge,Slytherin,80,60.875
+Harry Potter and the Order of the Phoenix,5,Ron Weasley,Gryffindor,53,37.39622641509434
+Harry Potter and the Order of the Phoenix,5,Sirius Black,Gryffindor,41,48.26829268292683
+Harry Potter and the Order of the Phoenix,5,Cornelius Fudge,Unknown,38,41.10526315789474
+Harry Potter and the Order of the Phoenix,5,Severus Snape,Slytherin,29,56.96551724137931
+Harry Potter and the Order of the Phoenix,5,Rubeus Hagrid,Gryffindor,24,54.208333333333336
+Harry Potter and the Order of the Phoenix,5,Minerva McGonagall,Gryffindor,23,43.30434782608695
+Harry Potter and the Order of the Phoenix,5,Arthur Weasley,Gryffindor,22,53.81818181818182
+Harry Potter and the Order of the Phoenix,5,Lucius Malfoy,Slytherin,22,55.81818181818182
+Harry Potter and the Order of the Phoenix,5,Remus Lupin,Gryffindor,21,44.285714285714285
+Harry Potter and the Order of the Phoenix,5,Alastor Moody,Unknown,20,33.35
+Harry Potter and the Order of the Phoenix,5,Luna Lovegood,Ravenclaw,20,44.35
+Harry Potter and the Order of the Phoenix,5,Neville Longbottom,Gryffindor,19,23.36842105263158
+Harry Potter and the Order of the Phoenix,5,Bellatrix Lestrange,Slytherin,18,42.72222222222222
+Harry Potter and the Order of the Phoenix,5,Fred Weasley,Gryffindor,15,44.733333333333334
+Harry Potter and the Order of the Phoenix,5,James Potter,Gryffindor,14,28.5
+Harry Potter and the Order of the Phoenix,5,Molly Weasley,Gryffindor,12,34.416666666666664
+Harry Potter and the Order of the Phoenix,5,George Weasley,Gryffindor,11,27.545454545454547
+Harry Potter and the Order of the Phoenix,5,Voldemort,Slytherin,11,53.72727272727273
+Harry Potter and the Order of the Phoenix,5,Ginny Weasley,Gryffindor,10,49.8
+Harry Potter and the Order of the Phoenix,5,Sybill Trelawney,Ravenclaw,10,67.2
+Harry Potter and the Order of the Phoenix,5,Dudley Dursley,Unknown,9,34.55555555555556
+Harry Potter and the Order of the Phoenix,5,Lily Potter,Gryffindor,9,35.0
+Harry Potter and the Order of the Phoenix,5,Draco Malfoy,Slytherin,8,84.25
+Harry Potter and the Order of the Phoenix,5,Susan Bones,Hufflepuff,8,48.125
+Harry Potter and the Order of the Phoenix,5,Vernon Dursley,Unknown,8,25.875
+Harry Potter and the Order of the Phoenix,5,Angelina Johnson,Gryffindor,7,66.28571428571429
+Harry Potter and the Order of the Phoenix,5,Nearly Headless Nick,Gryffindor,6,41.666666666666664
+Harry Potter and the Order of the Phoenix,5,Arabella Figg,Unknown,5,61.4
+Harry Potter and the Order of the Phoenix,5,Dobby,Unknown,5,74.0
+Harry Potter and the Order of the Phoenix,5,Kingsley Shacklebolt,Unknown,5,27.8
+Harry Potter and the Order of the Phoenix,5,Kreacher,Unknown,5,46.0
+Harry Potter and the Order of the Phoenix,5,Ghosts,Unknown,4,20.75
+Harry Potter and the Order of the Phoenix,5,Grawp,Unknown,4,12.5
+Harry Potter and the Order of the Phoenix,5,Bane,Unknown,3,116.33333333333333
+Harry Potter and the Order of the Phoenix,5,Goblin,Unknown,3,33.333333333333336
+Harry Potter and the Order of the Phoenix,5,Nymphadora Tonks,Hufflepuff,3,30.666666666666668
+Harry Potter and the Order of the Phoenix,5,Seamus Finnigan,Gryffindor,3,60.0
+Harry Potter and the Order of the Phoenix,5,Argus Filch,Unknown,2,51.5
+Harry Potter and the Order of the Phoenix,5,Everard,Unknown,2,57.0
+Harry Potter and the Order of the Phoenix,5,Ghost,Unknown,2,64.5
+Harry Potter and the Order of the Phoenix,5,Griselda Marchbanks,Unknown,2,69.0
+Harry Potter and the Order of the Phoenix,5,Howler,Unknown,2,19.5
+Harry Potter and the Order of the Phoenix,5,Lee Jordan,Gryffindor,2,38.0
+Harry Potter and the Order of the Phoenix,5,Magorian,Unknown,2,27.5
+Harry Potter and the Order of the Phoenix,5,Perkins,Unknown,2,36.5
+Harry Potter and the Order of the Phoenix,5,Petunia Dursley,Unknown,2,19.5
+Harry Potter and the Order of the Phoenix,5,Phineas,Unknown,2,23.5
+Harry Potter and the Order of the Phoenix,5,Rolanda Hooch,Unknown,2,23.0
+Harry Potter and the Order of the Phoenix,5,Walburga Black,Slytherin,2,79.0
+Harry Potter and the Order of the Phoenix,5,Zacharias Smith,Hufflepuff,2,51.0
+Harry Potter and the Order of the Phoenix,5,Cho Chang,Ravenclaw,1,54.0
+Harry Potter and the Order of the Phoenix,5,Dean Thomas,Gryffindor,1,65.0
+Harry Potter and the Order of the Phoenix,5,Dilys Derwent,Unknown,1,103.0
+Harry Potter and the Order of the Phoenix,5,Ernest Macmillan,Hufflepuff,1,84.0
+Harry Potter and the Order of the Phoenix,5,Justin Finch-Fletchley,Hufflepuff,1,33.0
+Harry Potter and the Order of the Phoenix,5,Lavender Brown,Gryffindor,1,6.0
+Harry Potter and the Order of the Phoenix,5,Michael Corner,Ravenclaw,1,78.0
+Harry Potter and the Order of the Phoenix,5,Percy Weasley,Gryffindor,1,54.0
+Harry Potter and the Order of the Phoenix,5,Students,Unknown,1,93.0
+Harry Potter and the Half-Blood Prince,6,Harry Potter,Gryffindor,259,43.988416988416986
+Harry Potter and the Half-Blood Prince,6,Albus Dumbledore,Gryffindor,142,74.72535211267606
+Harry Potter and the Half-Blood Prince,6,Horace Slughorn,Slytherin,125,94.568
+Harry Potter and the Half-Blood Prince,6,Hermione Granger,Gryffindor,108,54.76851851851852
+Harry Potter and the Half-Blood Prince,6,Ron Weasley,Gryffindor,100,43.94
+Harry Potter and the Half-Blood Prince,6,Ginny Weasley,Gryffindor,36,40.05555555555556
+Harry Potter and the Half-Blood Prince,6,Severus Snape,Slytherin,36,54.666666666666664
+Harry Potter and the Half-Blood Prince,6,Draco Malfoy,Slytherin,27,50.7037037037037
+Harry Potter and the Half-Blood Prince,6,Tom Riddle,Slytherin,26,74.1923076923077
+Harry Potter and the Half-Blood Prince,6,Rubeus Hagrid,Gryffindor,22,58.95454545454545
+Harry Potter and the Half-Blood Prince,6,Bellatrix Lestrange,Slytherin,20,57.25
+Harry Potter and the Half-Blood Prince,6,Minerva McGonagall,Gryffindor,19,58.0
+Harry Potter and the Half-Blood Prince,6,Luna Lovegood,Ravenclaw,16,53.5625
+Harry Potter and the Half-Blood Prince,6,Fred Weasley,Gryffindor,13,33.07692307692308
+Harry Potter and the Half-Blood Prince,6,Arthur Weasley,Gryffindor,9,132.88888888888889
+Harry Potter and the Half-Blood Prince,6,Lavender Brown,Gryffindor,9,48.22222222222222
+Harry Potter and the Half-Blood Prince,6,Molly Weasley,Gryffindor,9,34.55555555555556
+Harry Potter and the Half-Blood Prince,6,George Weasley,Gryffindor,8,27.125
+Harry Potter and the Half-Blood Prince,6,Narcissa Malfoy,Slytherin,8,40.625
+Harry Potter and the Half-Blood Prince,6,Cormac McLaggen,Gryffindor,7,76.71428571428571
+Harry Potter and the Half-Blood Prince,6,Remus Lupin,Gryffindor,6,87.16666666666667
+Harry Potter and the Half-Blood Prince,6,Mrs. Cole,Unknown,5,83.6
+Harry Potter and the Half-Blood Prince,6,Nymphadora Tonks,Hufflepuff,5,38.4
+Harry Potter and the Half-Blood Prince,6,Filius Flitwick,Ravenclaw,4,37.0
+Harry Potter and the Half-Blood Prince,6,Katie Bell,Gryffindor,4,60.0
+Harry Potter and the Half-Blood Prince,6,Neville Longbottom,Gryffindor,4,39.0
+Harry Potter and the Half-Blood Prince,6,Wizard,Unknown,4,47.5
+Harry Potter and the Half-Blood Prince,6,Leanne,Hufflepuff,3,69.66666666666667
+Harry Potter and the Half-Blood Prince,6,Argus Filch,Unknown,2,97.0
+Harry Potter and the Half-Blood Prince,6,Blaise Zabini,Slytherin,2,19.5
+Harry Potter and the Half-Blood Prince,6,Fenrir Greyback,Unknown,2,14.0
+Harry Potter and the Half-Blood Prince,6,Pansy Parkinson,Slytherin,2,63.0
+Harry Potter and the Half-Blood Prince,6,Witch,Unknown,2,31.5
+Harry Potter and the Half-Blood Prince,6,Dean Thomas,Gryffindor,1,17.0
+Harry Potter and the Half-Blood Prince,6,Death Eater,Unknown,1,16.0
+Harry Potter and the Half-Blood Prince,6,Eldred Worple,Unknown,1,131.0
+Harry Potter and the Half-Blood Prince,6,Marcus Belby,Ravenclaw,1,155.0
+Harry Potter and the Half-Blood Prince,6,Seamus Finnigan,Gryffindor,1,55.0
+Harry Potter and the Half-Blood Prince,6,Students,Unknown,1,28.0
+Harry Potter and the Deathly Hallows Part 1,7,Harry Potter,Gryffindor,273,43.72893772893773
+Harry Potter and the Deathly Hallows Part 1,7,Hermione Granger,Gryffindor,215,50.16744186046512
+Harry Potter and the Deathly Hallows Part 1,7,Ron Weasley,Gryffindor,167,55.131736526946106
+Harry Potter and the Deathly Hallows Part 1,7,Voldemort,Slytherin,28,75.96428571428571
+Harry Potter and the Deathly Hallows Part 1,7,Xenophilius Lovegood,Unknown,25,71.12
+Harry Potter and the Deathly Hallows Part 1,7,Alastor Moody,Unknown,18,72.38888888888889
+Harry Potter and the Deathly Hallows Part 1,7,Bellatrix Lestrange,Slytherin,15,86.73333333333333
+Harry Potter and the Deathly Hallows Part 1,7,Rufus Scrimgeour,Unknown,14,137.85714285714286
+Harry Potter and the Deathly Hallows Part 1,7,Dobby,Unknown,13,73.38461538461539
+Harry Potter and the Deathly Hallows Part 1,7,Scabior,Slytherin,13,51.07692307692308
+Harry Potter and the Deathly Hallows Part 1,7,Arthur Weasley,Gryffindor,12,46.75
+Harry Potter and the Deathly Hallows Part 1,7,Remus Lupin,Gryffindor,12,52.833333333333336
+Harry Potter and the Deathly Hallows Part 1,7,Elphias Doge,Unknown,11,107.18181818181819
+Harry Potter and the Deathly Hallows Part 1,7,Rubeus Hagrid,Gryffindor,11,74.81818181818181
+Harry Potter and the Deathly Hallows Part 1,7,Fred Weasley,Gryffindor,10,35.1
+Harry Potter and the Deathly Hallows Part 1,7,Kreacher,Unknown,10,60.0
+Harry Potter and the Deathly Hallows Part 1,7,George Weasley,Gryffindor,9,42.0
+Harry Potter and the Deathly Hallows Part 1,7,Dolores Umbridge,Slytherin,8,59.125
+Harry Potter and the Deathly Hallows Part 1,7,Ginny Weasley,Gryffindor,8,37.625
+Harry Potter and the Deathly Hallows Part 1,7,Luna Lovegood,Ravenclaw,8,54.125
+Harry Potter and the Deathly Hallows Part 1,7,Mundungus Fletcher,Unknown,7,103.42857142857143
+Harry Potter and the Deathly Hallows Part 1,7,Muriel,Unknown,7,148.57142857142858
+Harry Potter and the Deathly Hallows Part 1,7,Corban Yaxley,Slytherin,6,85.33333333333333
+Harry Potter and the Deathly Hallows Part 1,7,Guard,Unknown,6,46.166666666666664
+Harry Potter and the Deathly Hallows Part 1,7,Lucius Malfoy,Slytherin,6,44.666666666666664
+Harry Potter and the Deathly Hallows Part 1,7,Vernon Dursley,Unknown,6,25.833333333333332
+Harry Potter and the Deathly Hallows Part 1,7,Mary Cattermole,Unknown,5,39.0
+Harry Potter and the Deathly Hallows Part 1,7,Bill Weasley,Gryffindor,4,47.25
+Harry Potter and the Deathly Hallows Part 1,7,Dudley Dursley,Unknown,4,23.25
+Harry Potter and the Deathly Hallows Part 1,7,Garrick Ollivander,Ravenclaw,4,51.25
+Harry Potter and the Deathly Hallows Part 1,7,Kingsley Shacklebolt,Unknown,4,43.25
+Harry Potter and the Deathly Hallows Part 1,7,Mrs. Granger,Unknown,4,61.75
+Harry Potter and the Deathly Hallows Part 1,7,Petunia Dursley,Unknown,4,71.25
+Harry Potter and the Deathly Hallows Part 1,7,Severus Snape,Slytherin,4,151.5
+Harry Potter and the Deathly Hallows Part 1,7,Woman,Unknown,4,80.5
+Harry Potter and the Deathly Hallows Part 1,7,Gellert Grindelwald,Durmstrang institute,3,115.66666666666667
+Harry Potter and the Deathly Hallows Part 1,7,Griphook,Unknown,3,54.0
+Harry Potter and the Deathly Hallows Part 1,7,Molly Weasley,Gryffindor,3,51.0
+Harry Potter and the Deathly Hallows Part 1,7,Peter Pettigrew,Gryffindor,3,28.333333333333332
+Harry Potter and the Deathly Hallows Part 1,7,Pius Thicknesse,Unknown,3,122.33333333333333
+Harry Potter and the Deathly Hallows Part 1,7,Trolley witch,Unknown,3,64.0
+Harry Potter and the Deathly Hallows Part 1,7,Bathilda Bagshot,Unknown,2,21.0
+Harry Potter and the Deathly Hallows Part 1,7,Draco Malfoy,Slytherin,2,21.5
+Harry Potter and the Deathly Hallows Part 1,7,Fleur Delacour,Beauxbatons academy of magic,2,35.0
+Harry Potter and the Deathly Hallows Part 1,7,Ghosts,Unknown,2,37.5
+Harry Potter and the Deathly Hallows Part 1,7,Lily Potter,Gryffindor,2,294.0
+Harry Potter and the Deathly Hallows Part 1,7,Mr. Granger,Unknown,2,45.5
+Harry Potter and the Deathly Hallows Part 1,7,Nymphadora Tonks,Hufflepuff,2,78.5
+Harry Potter and the Deathly Hallows Part 1,7,Charity Burbage,Unknown,1,34.0
+Harry Potter and the Deathly Hallows Part 1,7,Cormac McLaggen,Gryffindor,1,31.0
+Harry Potter and the Deathly Hallows Part 1,7,Fenrir Greyback,Unknown,1,99.0
+Harry Potter and the Deathly Hallows Part 1,7,Goblin,Unknown,1,59.0
+Harry Potter and the Deathly Hallows Part 1,7,Man,Unknown,1,120.0
+Harry Potter and the Deathly Hallows Part 1,7,Mykew Gregorovitch,Unknown,1,99.0
+Harry Potter and the Deathly Hallows Part 1,7,Narcissa Malfoy,Slytherin,1,31.0
+Harry Potter and the Deathly Hallows Part 1,7,Neville Longbottom,Gryffindor,1,25.0
+Harry Potter and the Deathly Hallows Part 1,7,Percy Weasley,Gryffindor,1,21.0
+Harry Potter and the Deathly Hallows Part 2,8,Harry Potter,Gryffindor,185,44.29189189189189
+Harry Potter and the Deathly Hallows Part 2,8,Ron Weasley,Gryffindor,78,35.91025641025641
+Harry Potter and the Deathly Hallows Part 2,8,Hermione Granger,Gryffindor,64,34.546875
+Harry Potter and the Deathly Hallows Part 2,8,Albus Dumbledore,Gryffindor,53,72.16981132075472
+Harry Potter and the Deathly Hallows Part 2,8,Voldemort,Slytherin,46,70.97826086956522
+Harry Potter and the Deathly Hallows Part 2,8,Severus Snape,Slytherin,40,60.25
+Harry Potter and the Deathly Hallows Part 2,8,Neville Longbottom,Gryffindor,33,55.27272727272727
+Harry Potter and the Deathly Hallows Part 2,8,Griphook,Unknown,30,42.06666666666667
+Harry Potter and the Deathly Hallows Part 2,8,Aberforth Dumbledore,Unknown,18,74.38888888888889
+Harry Potter and the Deathly Hallows Part 2,8,Luna Lovegood,Ravenclaw,16,47.625
+Harry Potter and the Deathly Hallows Part 2,8,Bellatrix Lestrange,Slytherin,12,29.75
+Harry Potter and the Deathly Hallows Part 2,8,Ginny Weasley,Gryffindor,12,21.25
+Harry Potter and the Deathly Hallows Part 2,8,Helena Ravenclaw,Ravenclaw,12,57.416666666666664
+Harry Potter and the Deathly Hallows Part 2,8,Bogrod,Unknown,10,77.1
+Harry Potter and the Deathly Hallows Part 2,8,Garrick Ollivander,Ravenclaw,9,97.33333333333333
+Harry Potter and the Deathly Hallows Part 2,8,Seamus Finnigan,Gryffindor,7,28.428571428571427
+Harry Potter and the Deathly Hallows Part 2,8,Albus Potter,Slytherin,6,19.833333333333332
+Harry Potter and the Deathly Hallows Part 2,8,Draco Malfoy,Slytherin,6,62.333333333333336
+Harry Potter and the Deathly Hallows Part 2,8,Merpeople,Unknown,6,34.666666666666664
+Harry Potter and the Deathly Hallows Part 2,8,Remus Lupin,Gryffindor,6,46.833333333333336
+Harry Potter and the Deathly Hallows Part 2,8,Argus Filch,Unknown,4,22.25
+Harry Potter and the Deathly Hallows Part 2,8,Bill Weasley,Gryffindor,4,90.0
+Harry Potter and the Deathly Hallows Part 2,8,Lily Potter,Gryffindor,4,18.5
+Harry Potter and the Deathly Hallows Part 2,8,Lucius Malfoy,Slytherin,4,39.25
+Harry Potter and the Deathly Hallows Part 2,8,Cho Chang,Ravenclaw,3,75.0
+Harry Potter and the Deathly Hallows Part 2,8,Kingsley Shacklebolt,Unknown,3,31.0
+Harry Potter and the Deathly Hallows Part 2,8,Corban Yaxley,Slytherin,2,15.0
+Harry Potter and the Deathly Hallows Part 2,8,Dean Thomas,Gryffindor,2,10.5
+Harry Potter and the Deathly Hallows Part 2,8,Fleur Delacour,Beauxbatons academy of magic,2,39.5
+Harry Potter and the Deathly Hallows Part 2,8,Ghosts,Unknown,2,43.0
+Harry Potter and the Deathly Hallows Part 2,8,Gregory Goyle,Slytherin,2,22.0
+Harry Potter and the Deathly Hallows Part 2,8,James Potter,Gryffindor,2,19.5
+Harry Potter and the Deathly Hallows Part 2,8,Narcissa Malfoy,Slytherin,2,15.5
+Harry Potter and the Deathly Hallows Part 2,8,Pansy Parkinson,Slytherin,2,45.0
+Harry Potter and the Deathly Hallows Part 2,8,Petunia Dursley,Unknown,2,23.0
+Harry Potter and the Deathly Hallows Part 2,8,Sirius Black,Gryffindor,2,26.0
+Harry Potter and the Deathly Hallows Part 2,8,Alecto Carrow,Slytherin,1,97.0
+Harry Potter and the Deathly Hallows Part 2,8,Arthur Weasley,Gryffindor,1,30.0
+Harry Potter and the Deathly Hallows Part 2,8,Filius Flitwick,Ravenclaw,1,94.0
+Harry Potter and the Deathly Hallows Part 2,8,Fred Weasley,Gryffindor,1,18.0
+Harry Potter and the Deathly Hallows Part 2,8,Gang thug,Unknown,1,28.0
+Harry Potter and the Deathly Hallows Part 2,8,Molly Weasley,Gryffindor,1,68.0
+Harry Potter and the Deathly Hallows Part 2,8,Nigel Wolpert,Gryffindor,1,117.0
+Harry Potter and the Deathly Hallows Part 2,8,Nymphadora Tonks,Hufflepuff,1,79.0
+Harry Potter and the Deathly Hallows Part 2,8,Oliver Wood,Gryffindor,1,24.0
+Harry Potter and the Deathly Hallows Part 2,8,Pius Thicknesse,Unknown,1,34.0
+Harry Potter and the Deathly Hallows Part 2,8,Pomona Sprout,Hufflepuff,1,39.0
+Harry Potter and the Deathly Hallows Part 2,8,Professors,Unknown,1,52.0
+Harry Potter and the Deathly Hallows Part 2,8,Sorting Hat,Unknown,1,69.0
+Harry Potter and the Deathly Hallows Part 2,8,Sybill Trelawney,Ravenclaw,1,61.0
