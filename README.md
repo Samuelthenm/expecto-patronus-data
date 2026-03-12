@@ -44,7 +44,7 @@ All of that is in sql/queries.sql if you want to see it.
 SQL, Tableau, Advanced Excel, DAX
 
 ## Tableau Preview
-![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/tableaupreview.png)
+![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif)
 
 # dashboard
 Open index.html in any browser. You can upload the Kaggle CSVs directly or use the demo data to preview the dashboard without downloading anything.
