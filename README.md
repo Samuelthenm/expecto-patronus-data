@@ -5,28 +5,18 @@ Analysis of the Harry Potter movies dataset from Kaggle — all 8 films, coverin
 Kaggle dataset by maricinnamon — link here:
 <a href="https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset" target="_blank">https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset</a>
 
-Comes with 7 CSVs: Characters, Dialogues, Movies, Spells, Places, Chapters, Data Dictionary. Uses semicolon delimiters which tripped me up at first — worth knowing before you import.
+- Which characters speak the most across all 8 films
+- How dialogue breaks down by Hogwarts house
+- Which movie has the most and least lines
+- Most referenced spells and their types
+- How Harry, Hermione, and Ron's presence shifts across the series
+- Which locations come up most in dialogue
 
-Raw files are not pushed to this repo. Download directly from Kaggle and drop them into the dashboard to run the analysis yourself.
+# Data Cleaning (SQL)
+The raw data had inconsistencies — mismatched casing, whitespace, nulls, and duplicate rows. I cleaned it in SQL before analysis:
+trimmed whitespace, standardized house names, filled null houses with `Unknown`, removed duplicates, and used `LOWER(TRIM())` on joins to match character names reliably.
 
-
-# What I observed
-- which characters speak the most across all 8 films
-- how dialogue is split across the four houses
-- which movie has the most and least lines
-- most referenced spells and what type they are
-- how Harry, Hermione and Ron's screen presence shifts across the series
-- which locations come up most in dialogue
-
-# What I cleaned
-The data needed some work before it was usable. Main things I did in SQL:
-- trimmed whitespace from character names and dialogue fields (there were a lot of inconsistencies)
-- standardized house name casing
-- filled null house values with 'Unknown'
-- removed duplicate dialogue rows
-- used LOWER(TRIM()) on joins between tables because the character names didn't always match exactly
-
-All of that is in sql/queries.sql if you want to see it.
+→ Full queries in the SQL folder [`sql/queries.sql`](sql/queries.sql)
 
 # Tools Used
 SQL, Tableau, Advanced Excel, DAX
