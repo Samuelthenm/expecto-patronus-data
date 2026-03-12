@@ -15,7 +15,7 @@ expecto-patronus-data/
 
 # the data
 Kaggle dataset by maricinnamon — link here:
-https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset
+(https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset)
 
 Comes with 7 CSVs: Characters, Dialogues, Movies, Spells, Places, Chapters, Data Dictionary. Uses semicolon delimiters which tripped me up at first — worth knowing before you import.
 
@@ -45,9 +45,3 @@ SQL, Tableau, Advanced Excel, DAX
 
 ## Tableau Preview
 ![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif)
-
-# dashboard
-Open index.html in any browser. You can upload the Kaggle CSVs directly or use the demo data to preview the dashboard without downloading anything.
-
-built by Samuel Then
-linkedin.com/in/samuel-then
