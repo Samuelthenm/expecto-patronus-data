@@ -3,7 +3,7 @@ Analysis of the Harry Potter movies dataset from Kaggle — all 8 films, coverin
 
 # The data
 Kaggle dataset by maricinnamon — link here:
-(https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset)
+<a href="https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset" target="_blank">https://www.kaggle.com/datasets/maricinnamon/harry-potter-movies-dataset</a>
 
 Comes with 7 CSVs: Characters, Dialogues, Movies, Spells, Places, Chapters, Data Dictionary. Uses semicolon delimiters which tripped me up at first — worth knowing before you import.
 
@@ -35,4 +35,4 @@ SQL, Tableau, Advanced Excel, DAX
 ![Harry Potter Tableau](https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif)
 
 ## Live Demo
-([https://samuelthenm.github.io/expecto-patronus-data/assets/tableaupreview.gif](https://samuelthenm.github.io/expecto-patronus-data/))
+<a href="https://samuelthenm.github.io/expecto-patronus-data/" target="_blank">https://samuelthenm.github.io/expecto-patronus-data/</a>
