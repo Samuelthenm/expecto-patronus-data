@@ -466,12 +466,12 @@
     letter-spacing: 0.08em;
   }
 
-  .type-charm { background: rgba(72,202,228,0.12); color: #48cae4; border: 1px solid rgba(72,202,228,0.2); }
-  .type-curse { background: rgba(174,0,1,0.15); color: #ff6b6b; border: 1px solid rgba(174,0,1,0.2); }
-  .type-jinx  { background: rgba(123,104,238,0.15); color: #b8aaff; border: 1px solid rgba(123,104,238,0.2); }
-  .type-hex   { background: rgba(255,140,0,0.12); color: #ffab40; border: 1px solid rgba(255,140,0,0.2); }
-  .type-trans { background: rgba(42,98,61,0.2); color: #6fcf97; border: 1px solid rgba(42,98,61,0.3); }
-  .type-other { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border); }
+.type-charm { background: rgba(201,168,76,0.12); color: #e8c97a; border: 1px solid rgba(201,168,76,0.25); }
+.type-curse { background: rgba(174,0,1,0.15); color: #ff6b6b; border: 1px solid rgba(174,0,1,0.2); }
+.type-jinx  { background: rgba(42,98,61,0.2); color: #6fcf97; border: 1px solid rgba(42,98,61,0.3); }
+.type-hex   { background: rgba(34,47,91,0.3); color: #90acda; border: 1px solid rgba(74,111,165,0.3); }
+.type-trans { background: rgba(201,168,76,0.08); color: var(--text-muted); border: 1px solid var(--border); }
+.type-other { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border); }
 
   /* ── LINE CHART ── */
   .line-wrap { position: relative; height: 160px; }
